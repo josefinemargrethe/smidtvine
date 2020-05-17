@@ -71,6 +71,11 @@ function displayData(vine) {
   //   styleButton(wineCategory);
 
   // vine.forEach(styleButton(wineCategory));
+
+  document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
+    location.href = "vin.html?id=" + vine.id;
+    //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
+  });
 }
 
 // function styleButton(wineCategory) {

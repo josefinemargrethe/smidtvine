@@ -549,6 +549,34 @@ footer {
   /*************** FORSIDE SLUT ****************/
   /*************** VINE ****************/
 
+  .content {
+    display: grid;
+  }
+
+  aside {
+    position: fixed;
+  }
+
+  #contextnav nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 18vw;
+    text-align: left;
+    min-width: 14vw;
+    padding: 3vw;
+  }
+
+  #contextnav nav a:hover {
+    font-weight: 700;
+  }
+
+  #contextnav {
+    border-right: 1px solid black;
+    border-bottom: 0;
+    border-top: 0;
+  }
+
   .wines {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -556,5 +584,6 @@ footer {
     grid-row-gap: 5vh;
     padding: 3vh;
     align-items: center;
+    margin-left: 15vw;
   }
 }

@@ -16,7 +16,7 @@
           <div class="overlay-content">
             <a href="index.html"><img src="img/logo.png" alt="Smidt Vine logo" class="burger_logo" /></a>
             <a href="index.html">Hjem</a>
-            <a href="vine.html">Vine</a>
+            <a href="allevine.html">Vine</a>
             <a href="specialiteter.html">Specialiteter</a>
             <a href="moed_smidtvine.html">Mød Smidt Vine</a>
             <a href="om.html">Om Smidt Vine</a>
@@ -32,7 +32,7 @@
     <header class="desktop">
       <nav class="desktop desktop_nav" id="desktop_nav">
         <a href="index.html">Hjem</a>
-        <a href="vine.html"><strong>Vine</strong></a>
+        <a href="allevine.html"><b>Vine</b></a>
         <a href="specialiteter.html">Specialiteter</a>
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
@@ -56,19 +56,30 @@
       </section>
 
       <section id="wines">
-        <div class="wines"></div>
-        <template>
-          <article class="single_wine">
-            <div class="wine_image"></div>
-            <div class="wine_info">
-              <h3 class="wine_name"></h3>
-              <p class="wine_description"></p>
-              <p class="wine_price_six"></p>
-              <p class="wine_price"></p>
-              <button class="readmore">Læs mere</button>
-            </div>
-          </article>
-        </template>
+        <article class="content">
+          <aside id="contextnav">
+            <nav>
+              <a href="allevine.html"><b>Alle vine</b></a>
+              <a href="roedvine.html">Rødvine</a>
+              <a href="hvidvine.html">Hvidvine</a>
+              <a href="rosevine.html">Rosé vine</a>
+              <a href="smagekasser.html">Smagekasser</a>
+            </nav>
+          </aside>
+          <div class="wines"></div>
+          <template>
+            <article class="single_wine">
+              <div class="wine_image"></div>
+              <div class="wine_info">
+                <h3 class="wine_name"></h3>
+                <p class="wine_description"></p>
+                <p class="wine_price_six"></p>
+                <p class="wine_price"></p>
+                <button class="readmore">Læs mere</button>
+              </div>
+            </article>
+          </template>
+        </article>
       </section>
     </main>
 

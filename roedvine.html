@@ -31,8 +31,8 @@
     </header>
     <header class="desktop">
       <nav class="desktop desktop_nav" id="desktop_nav">
-        <a href="index.html"><b>Hjem</b></a>
-        <a href="allevine.html">Vine</a>
+        <a href="index.html">Hjem</a>
+        <a href="allevine.html"><strong>Vine</strong></a>
         <a href="specialiteter.html">Specialiteter</a>
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
@@ -51,60 +51,35 @@
     </header>
 
     <main>
-      <section id="splash">
-        <picture class="hero">
-          <source media="(min-width: 1025px) and (orientation: landscape)" srcset="img/desktop.jpg" />
-          <source media="(min-width: 813px) and (orientation: landscape)" srcset="img/tablet_landscape.jpg" />
-          <source media="(min-width: 628px) and (orientation: portrait)" srcset="img/tablet_portrait.jpg" />
-          <source media="(min-width: 450px) and (orientation: landscape)" srcset="img/mobile_landscape.jpg" />
-          <img src="img/mobile_portrait.jpg" alt="Smidt Vine Splash Svendborgsundbroen" />
-        </picture>
-        <div class="splash_overlay"></div>
-        <img src="img/logo2.png" alt="logo" class="logo" />
-        <h2>- din lokale vinhandler på Sydfyn</h2>
-        <a href="#headline">
-          <div class="scroll-down"></div>
-        </a>
+      <section id="vine_headline">
+        <h1><span class="vine_headline">Vine</span></h1>
       </section>
 
-      <section id="headline"><h1>Velkommen til Smidt Vine!</h1></section>
-
-      <section id="mobile_cards">
-        <a href="vine.html"
-          ><div><img src="img/rødvin.png" alt="rødvin" /></div
-        ></a>
-        <a href="vine.html"
-          ><div><p>Se vores udvalg af vin her</p></div></a
-        >
-        <a href="specialiteter.html"
-          ><div><img src="img/specialiteter.png" alt="specialiteter" /></div
-        ></a>
-        <a href="specialiteter.html"
-          ><div><p>Se vores udvalg af specialiteter her</p></div></a
-        >
-      </section>
-
-      <section id="desk_cards">
-        <div><img src="img/rødvin.png" alt="rødvin" /></div>
-        <div><img src="img/rose_vin.png" alt="rose" /></div>
-        <div>
-          <a href="specialiteter.html"><img src="img/specialiteter.png" alt="specialiteter" /></a>
-        </div>
-        <div><p>Se vores udvalg af rødvin</p></div>
-        <div><p>Se vores udvalg af rosé vin</p></div>
-        <div>
-          <a href="specialiteter.html"><p>Se vores udvalg af specialiteter</p></a>
-        </div>
-      </section>
-
-      <section id="index_content">
-        <div class="index_content"></div>
-        <template>
-          <article class="index_wrapper">
-            <div class="index_text"><p></p></div>
-            <div class="index_image"></div>
-          </article>
-        </template>
+      <section id="wines">
+        <article class="content">
+          <aside id="contextnav">
+            <nav>
+              <a href="allevine.html">Alle vine</a>
+              <a href="roedvine.html"><b>Rødvine</b></a>
+              <a href="hvidvine.html">Hvidvine</a>
+              <a href="rosevine.html">Rosé vine</a>
+              <a href="smagekasser.html">Smagekasser</a>
+            </nav>
+          </aside>
+          <div class="wines"></div>
+          <template>
+            <article class="single_wine">
+              <div class="wine_image"></div>
+              <div class="wine_info">
+                <h3 class="wine_name"></h3>
+                <p class="wine_description"></p>
+                <p class="wine_price_six"></p>
+                <p class="wine_price"></p>
+                <button class="readmore">Læs mere</button>
+              </div>
+            </article>
+          </template>
+        </article>
       </section>
     </main>
 
@@ -136,7 +111,50 @@
       </p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+      let vin = [];
+      let filter = "rødvin";
+
+      document.addEventListener("DOMContentLoaded", hentJson);
+
+      async function hentJson() {
+        let url = "https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100";
+        let jsonData = await fetch(url);
+
+        vin = await jsonData.json();
+
+        visData();
+
+        console.log("getjson");
+      }
+
+      function visData() {
+        console.log("visdata");
+        let dest = document.querySelector(".wines");
+        let kat = vin.find((kat) => kat.id == 65);
+
+        // document.querySelector(".category").innerHTML = kat.kategoribeskrivelse;
+
+        // dest.innerHTML = "";
+
+        // her laves et loop, hvor man gennemgår alle posts i shop pod'en og tjekker, hvilke der har filter-kategorien, i det her tilfælde tæppe/rug. Så for alle tæpper indsættes den samme template
+
+        vin.forEach((vin) => {
+          if (filter == vin.vin_type) {
+            let template = `
+                        <h3>${vin.vin_navn}
+                        </h3>
+`;
+            dest.insertAdjacentHTML("beforeend", template);
+
+            dest.lastElementChild.addEventListener("click", () => {
+              location.href = "vin.html?id=" + vin.id;
+              //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
+            });
+          }
+        });
+      }
+    </script>
     <script src="header.js"></script>
   </body>
 </html>
