@@ -27,10 +27,16 @@ function displayData(vine) {
   clone.querySelector(".wine_image").innerHTML = `<img src="${vine.vin_billede.guid}" alt="${vine.vin_billede.post_title}">`;
   clone.querySelector(".wine_name").innerHTML = vine.vin_navn;
   clone.querySelector(".wine_description").innerHTML = vine.kort_beskrivelse;
-  clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af 6 flasker</p></b>`;
 
-  if (vine.pris_enkeltstyk != "") {
-    clone.querySelector(".wine_price").innerHTML = `<p>Ellers ${vine.pris_enkeltstyk} kr. pr. flaske</p>`;
+  if (vine.udsolgt == "ja") {
+    clone.querySelector(".wine_price_six").innerHTML = `${vine.vin_navn} er desværre mildertidigt udsolgt!`;
+    clone.querySelector(".wine_price_six").style.color = "rgb(192, 98, 98)";
+  } else {
+    clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af 6 flasker</p></b>`;
+
+    if (vine.pris_enkeltstyk != "") {
+      clone.querySelector(".wine_price").innerHTML = `<p>Ellers ${vine.pris_enkeltstyk} kr. pr. flaske</p>`;
+    }
   }
 
   let theme = vine.vin_type;

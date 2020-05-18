@@ -7,6 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+      .vine_headline {
+        background-image: linear-gradient(90deg, transparent 50%, #a8a400 0);
+      }
+    </style>
   </head>
   <body>
     <header class="mobil">
@@ -59,14 +64,14 @@
         <article class="content">
           <aside id="contextnav">
             <nav>
-              <a href="allespecialiteter.html"><b>Alle specialiteter</b></a>
-              <a href="olivenolie.html">Olivenolie</a>
+              <a href="allespecialiteter.html">Alle specialiteter</a>
+              <a href="olivenolie.html"><b>Olivenolie</b></a>
               <a href="oliven.html">Oliven</a>
               <a href="oliventapenade.html">Oliventapenade</a>
             </nav>
           </aside>
           <div class="wines"></div>
-          <!-- <template>
+          <template>
             <article class="single_wine">
               <div class="wine_image"></div>
               <div class="wine_info">
@@ -77,7 +82,7 @@
                 <button class="readmore">Læs mere</button>
               </div>
             </article>
-          </template> -->
+          </template>
         </article>
       </section>
     </main>
@@ -111,55 +116,60 @@
     </footer>
 
     <script>
+      "use strict";
       let specialiteter = [];
       let filter = "olivenolie";
 
-      document.addEventListener("DOMContentLoaded", hentJson);
+      window.addEventListener("DOMContentLoaded", loadJSON);
 
-      async function hentJson() {
-        let url = "https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/specialiteter?per_page=100";
-        let jsonData = await fetch(url);
-
-        specialiteter = await jsonData.json();
-
-        visData();
-
-        console.log("getjson");
+      function loadJSON() {
+        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/specialiteter?per_page=100")
+          .then((response) => response.json())
+          .then((specialiteter) => {
+            //når JSON er loadet tager vi vores data med videre til prepareData
+            showData(specialiteter);
+          });
       }
 
-      function visData() {
-        console.log("visdata");
-        let dest = document.querySelector(".wines");
-        let kat = specialiteter.find((kat) => kat.id == 65);
+      function showData(specialiteter) {
+        // we are clearing the list
+        document.querySelector(".wines").innerHTML = "";
 
-        // document.querySelector(".category").innerHTML = kat.kategoribeskrivelse;
+        // we are building a new list
+        specialiteter.forEach(displayData);
+      }
 
-        // dest.innerHTML = "";
+      function displayData(specialiteter) {
+        if (filter == specialiteter.hvilken_specialitet) {
+          // create clone
+          const clone = document.querySelector("template").content.cloneNode(true);
 
-        // her laves et loop, hvor man gennemgår alle posts i shop pod'en og tjekker, hvilke der har filter-kategorien, i det her tilfælde tæppe/rug. Så for alle tæpper indsættes den samme template
+          // set clone data
+          clone.querySelector(".wine_image").innerHTML = `<img src="${specialiteter.specialitet_billede.guid}" alt="${specialiteter.specialitet_billede.post_title}">`;
+          clone.querySelector(".wine_name").innerHTML = specialiteter.specialitet_navn;
+          clone.querySelector(".wine_description").innerHTML = specialiteter.kort_beskrivelse;
 
-        specialiteter.forEach((specialiteter) => {
-          if (filter == specialiteter.specialitet_type) {
-            let template = `
-            <article class="single_wine">
-              <div class="wine_image"><img src="${specialiteter.specialitet_billede.guid}" alt="${specialiteter.specialitet_billede.post_title}"> </div>
-              <div class="wine_info">
-                <h3 class="wine_name">${specialiteter.specialitet_navn}</h3>
-                <p class="wine_description">${specialiteter.kort_beskrivelse}</p>
-                <p class="wine_price_six"><b>Pris: ${specialiteter.specialitet_pris} kr.</b></p>
-                <button class="readmore">Læs mere</button>
-</article>
-                       
-            
-`;
-            dest.insertAdjacentHTML("beforeend", template);
+          if (specialiteter.udsolgt == "ja") {
+            clone.querySelector(".wine_price_six").innerHTML = `${specialiteter.specialitet_navn} er desværre mildertidigt udsolgt!`;
+            clone.querySelector(".wine_price_six").style.color = "rgb(192, 98, 98)";
+          } else {
+            clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${specialiteter.specialitet_pris} kr.</p></b>`;
 
-            dest.lastElementChild.addEventListener("click", () => {
-              location.href = "specialitet.html?id=" + specialiteter.id;
-              //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
-            });
+            if (specialiteter.flerstykspris != "") {
+              clone.querySelector(".wine_price").innerHTML = `<p>Tag 4 glas for ${specialiteter.flerstykspris} kr.</p>`;
+            }
           }
-        });
+
+          let theme = specialiteter.type;
+          clone.querySelector(".readmore").setAttribute("data-theme", theme);
+
+          document.querySelector(".wines").appendChild(clone);
+
+          document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
+            location.href = "specialitet.html?id=" + specialiteter.id;
+            //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
+          });
+        }
       }
     </script>
     <script src="header.js"></script>

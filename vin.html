@@ -41,7 +41,7 @@
     <header class="desktop">
       <nav class="desktop desktop_nav" id="desktop_nav">
         <a href="index.html">Hjem</a>
-        <a href="allevine.html"><strong>Vine</strong></a>
+        <a href="allevine.html"><b>Vine</b></a>
         <a href="allespecialiteter.html">Specialiteter</a>
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
@@ -77,7 +77,9 @@
           </aside>
           <div id="single_wrapper">
             <div id="singleview"></div>
-            <div id="interesse"></div>
+            <div id="interesse">
+              <h3>Relaterede produkter</h3>
+            </div>
             <div id="mix_match"></div>
           </div>
         </article>
@@ -156,28 +158,35 @@
           info.forEach((mix) => {
             console.log(mix.id + " id = " + id);
 
-            if (mix.vin_type == itemType && mix.id != id) {
+            if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej") {
               document.querySelector("#mix_match").innerHTML += `
-      <article class="colors">
-      <a href="vin.html?id=${mix.id}">
-          <img src="${mix.vin_billede.guid}" alt="${mix.vin_navn}">
-          </a>
-      </article>
+ 
+      
+        <div class="single_wine">
+          <a href="vin.html?id=${mix.id}"><div class="wine_image"><img src="${mix.vin_billede.guid}" alt="${mix.vin_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${mix.vin_navn}</h2>
+                      <p class="wine_description">${mix.kort_beskrivelse}</p>
+                      <p class="wine_price_six"><b>Pris: ${mix.pris_6flasker} kr. ved køb af 6 flasker</b></p>
+                      <p class="wine_price">Ellers ${mix.pris_enkeltstyk} kr. pr. flaske</p>
+                      </a>
+      </div>
+   
       `;
             }
           });
 
-          let interesse = document.querySelector("#interesse");
+          // let interesse = document.querySelector("#interesse");
 
-          if (info.wine_type == "redwine") {
-            interesse.innerHTML += `<h2>Er du interesseret i rødvin? Se vores andre rødvine her</h2>`;
-          } else if (info.wine_type == "whitewine") {
-            interesse.innerHTML += `<h2>Er du interesseret i hvidvin? Se vores andre hvidvine her</h2>`;
-          } else if (info.wine_type == "rosewine") {
-            interesse.innerHTML += `<h2>Er du interesseret i rosé vin? Se vores andre rosé vine her</h2>`;
-          } else {
-            interesse.innerHTML += `<h2>Er du interesseret i smagekasser? Se vores andre smagekasser her</h2>`;
-          }
+          // if (info.wine_type == "redwine") {
+          //   interesse.innerHTML += `<h2>Er du interesseret i rødvin? Se vores andre rødvine her</h2>`;
+          // } else if (info.wine_type == "whitewine") {
+          //   interesse.innerHTML += `<h2>Er du interesseret i hvidvin? Se vores andre hvidvine her</h2>`;
+          // } else if (info.wine_type == "rosewine") {
+          //   interesse.innerHTML += `<h2>Er du interesseret i rosé vin? Se vores andre rosé vine her</h2>`;
+          // } else {
+          //   interesse.innerHTML += `<h2>Er du interesseret i smagekasser? Se vores andre smagekasser her</h2>`;
+          // }
 
           //   info.forEach((type) => {
           //     if (type.wine_type == "redwine") {
@@ -197,7 +206,24 @@
         function openProduct() {
           //console.log("openproduct");
 
-          document.querySelector("#singleview").innerHTML = `
+          if (vin.udsolgt == "ja") {
+            document.querySelector("#singleview").innerHTML = `
+                              <article class = "single_product">
+      <div class="single_wine">
+                    <div class="wine_image"><img src="${vin.vin_billede.guid}" alt="${vin.vin_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${vin.vin_navn}</h2>
+                      <p class="wine_description">${vin.kort_beskrivelse}</p>
+                      <p class="wine_price_six" style="color:rgb(192, 98, 98);">${vin.vin_navn} er desværre midlertidigt udsolgt!</p>
+                     
+      </div>
+      </div>
+      <div class="middle"><h3>Mere info</h3>${vin.vin_info1}</div>
+      <div class="right">${vin.vin_info2}</div>
+                              </article>
+                              `;
+          } else {
+            document.querySelector("#singleview").innerHTML = `
                               <article class = "single_product">
       <div class="single_wine">
                     <div class="wine_image"><img src="${vin.vin_billede.guid}" alt="${vin.vin_billede.post_title}"> </div>
@@ -208,12 +234,11 @@
                       <p class="wine_price">Ellers ${vin.pris_enkeltstyk} kr. pr. flaske</p>
       </div>
       </div>
-      <div class="middle">${vin.vin_info1}</div>
+      <div class="middle"><h3>Mere info</h3>${vin.vin_info1}</div>
       <div class="right">${vin.vin_info2}</div>
-
-
                               </article>
                               `;
+          }
         }
 
         getJson();

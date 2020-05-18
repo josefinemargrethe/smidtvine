@@ -27,11 +27,20 @@ function displayData(specialiteter) {
   clone.querySelector(".wine_image").innerHTML = `<img src="${specialiteter.specialitet_billede.guid}" alt="${specialiteter.specialitet_billede.post_title}">`;
   clone.querySelector(".wine_name").innerHTML = specialiteter.specialitet_navn;
   clone.querySelector(".wine_description").innerHTML = specialiteter.kort_beskrivelse;
-  clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${specialiteter.specialitet_pris} kr.</p></b>`;
 
-  if (specialiteter.flerstykspris != "") {
-    clone.querySelector(".wine_price").innerHTML = `<p>Tag 4 glas for ${specialiteter.flerstykspris} kr.</p>`;
+  if (specialiteter.udsolgt == "ja") {
+    clone.querySelector(".wine_price_six").innerHTML = `${specialiteter.specialitet_navn} er desværre mildertidigt udsolgt!`;
+    clone.querySelector(".wine_price_six").style.color = "rgb(192, 98, 98)";
+  } else {
+    clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${specialiteter.specialitet_pris} kr.</p></b>`;
+
+    if (specialiteter.flerstykspris != "") {
+      clone.querySelector(".wine_price").innerHTML = `<p>Tag 4 glas for ${specialiteter.flerstykspris} kr.</p>`;
+    }
   }
+
+  let theme = specialiteter.type;
+  clone.querySelector(".readmore").setAttribute("data-theme", theme);
 
   document.querySelector(".wines").appendChild(clone);
 
