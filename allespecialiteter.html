@@ -32,8 +32,8 @@
     <header class="desktop">
       <nav class="desktop desktop_nav" id="desktop_nav">
         <a href="index.html">Hjem</a>
-        <a href="allevine.html"><strong>Vine</strong></a>
-        <a href="allespecialiteter.html">Specialiteter</a>
+        <a href="allevine.html">Vine</a>
+        <a href="allespecialiteter.html"><b>Specialiteter</b></a>
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
@@ -52,18 +52,17 @@
 
     <main>
       <section id="vine_headline">
-        <h1><span class="vine_headline">Vine</span></h1>
+        <h1><span class="vine_headline">Specialiteter</span></h1>
       </section>
 
       <section id="wines">
         <article class="content">
           <aside id="contextnav">
             <nav>
-              <a href="allevine.html">Alle vine</a>
-              <a href="roedvine.html">Rødvine</a>
-              <a href="hvidvine.html">Hvidvine</a>
-              <a href="rosevine.html"><b>Rosé vine</b></a>
-              <a href="smagekasser.html">Smagekasser</a>
+              <a href="allespecialiteter.html"><b>Alle specialiteter</b></a>
+              <a href="olivenolie.html">Olivenolie</a>
+              <a href="oliven.html">Oliven</a>
+              <a href="oliventapenade.html">Oliventapenade</a>
             </nav>
           </aside>
           <div class="wines"></div>
@@ -111,57 +110,7 @@
       </p>
     </footer>
 
-    <script>
-      "use strict";
-      let vine = [];
-      let filter = "rosé vin";
-
-      window.addEventListener("DOMContentLoaded", loadJSON);
-
-      function loadJSON() {
-        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100")
-          .then((response) => response.json())
-          .then((vine) => {
-            //når JSON er loadet tager vi vores data med videre til prepareData
-            showData(vine);
-          });
-      }
-
-      function showData(vine) {
-        // we are clearing the list
-        document.querySelector(".wines").innerHTML = "";
-
-        // we are building a new list
-        vine.forEach(displayData);
-      }
-
-      function displayData(vine) {
-        if (filter == vine.vin_type) {
-          // create clone
-          const clone = document.querySelector("template").content.cloneNode(true);
-
-          // set clone data
-          clone.querySelector(".wine_image").innerHTML = `<img src="${vine.vin_billede.guid}" alt="${vine.vin_billede.post_title}">`;
-          clone.querySelector(".wine_name").innerHTML = vine.vin_navn;
-          clone.querySelector(".wine_description").innerHTML = vine.kort_beskrivelse;
-          clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af 6 flasker</p></b>`;
-
-          if (vine.pris_enkeltstyk != "") {
-            clone.querySelector(".wine_price").innerHTML = `<p>Ellers ${vine.pris_enkeltstyk} kr. pr. flaske</p>`;
-          }
-
-          let theme = vine.vin_type;
-          clone.querySelector(".readmore").setAttribute("data-theme", theme);
-
-          document.querySelector(".wines").appendChild(clone);
-
-          document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
-            location.href = "vin.html?id=" + vine.id;
-            //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
-          });
-        }
-      }
-    </script>
+    <script src="specialiteter.js"></script>
     <script src="header.js"></script>
   </body>
 </html>

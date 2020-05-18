@@ -1,17 +1,17 @@
 /*********************    BASIC    ***********************/
-.readmore[data-theme="redwine"] {
-  --wine-color: yellow;
+.readmore[data-theme="rødvin"] {
+  --wine-color: #7099d0;
 }
 
-.readmore[data-theme="whitewine"] {
-  --wine-color: green;
+.readmore[data-theme="hvidvin"] {
+  --wine-color: #b5c10e;
 }
-.readmore[data-theme="rosewine"] {
-  --wine-color: blue;
+.readmore[data-theme="rosé vin"] {
+  --wine-color: #be6580;
 }
 
 .readmore[data-theme="smagekasse"] {
-  --wine-color: hotpink;
+  --wine-color: #9bcbcb;
 }
 
 .readmore {
@@ -368,7 +368,15 @@ footer {
 
 .wine_price {
   margin-top: -2vh;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
+}
+
+#wines p {
+  font-size: 0.8rem;
+}
+
+.single_product h2 {
+  color: var(--wine-color);
 }
 
 /****************MEDIA QUERIES************/
@@ -585,5 +593,29 @@ footer {
     padding: 3vh;
     align-items: center;
     margin-left: 15vw;
+  }
+
+  #single_wrapper {
+    grid-column: 2;
+  }
+
+  .single_product {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    margin-right: 5vh;
+    grid-gap: 5vh;
+  }
+
+  .single_product .wine_image {
+    align-self: initial;
+  }
+
+  .single_product h2 {
+    margin-top: 0;
+  }
+
+  #mix_match {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }

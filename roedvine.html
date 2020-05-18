@@ -17,7 +17,7 @@
             <a href="index.html"><img src="img/logo.png" alt="Smidt Vine logo" class="burger_logo" /></a>
             <a href="index.html">Hjem</a>
             <a href="allevine.html">Vine</a>
-            <a href="specialiteter.html">Specialiteter</a>
+            <a href="allespecialiteter.html">Specialiteter</a>
             <a href="moed_smidtvine.html">Mød Smidt Vine</a>
             <a href="om.html">Om Smidt Vine</a>
             <p>Mød Vinbønderne</p>
@@ -33,7 +33,7 @@
       <nav class="desktop desktop_nav" id="desktop_nav">
         <a href="index.html">Hjem</a>
         <a href="allevine.html"><strong>Vine</strong></a>
-        <a href="specialiteter.html">Specialiteter</a>
+        <a href="allespecialiteter.html">Specialiteter</a>
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
@@ -112,47 +112,54 @@
     </footer>
 
     <script>
-      let vin = [];
+      "use strict";
+      let vine = [];
       let filter = "rødvin";
 
-      document.addEventListener("DOMContentLoaded", hentJson);
+      window.addEventListener("DOMContentLoaded", loadJSON);
 
-      async function hentJson() {
-        let url = "https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100";
-        let jsonData = await fetch(url);
-
-        vin = await jsonData.json();
-
-        visData();
-
-        console.log("getjson");
+      function loadJSON() {
+        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100")
+          .then((response) => response.json())
+          .then((vine) => {
+            //når JSON er loadet tager vi vores data med videre til prepareData
+            showData(vine);
+          });
       }
 
-      function visData() {
-        console.log("visdata");
-        let dest = document.querySelector(".wines");
-        let kat = vin.find((kat) => kat.id == 65);
+      function showData(vine) {
+        // we are clearing the list
+        document.querySelector(".wines").innerHTML = "";
 
-        // document.querySelector(".category").innerHTML = kat.kategoribeskrivelse;
+        // we are building a new list
+        vine.forEach(displayData);
+      }
 
-        // dest.innerHTML = "";
+      function displayData(vine) {
+        if (filter == vine.vin_type) {
+          // create clone
+          const clone = document.querySelector("template").content.cloneNode(true);
 
-        // her laves et loop, hvor man gennemgår alle posts i shop pod'en og tjekker, hvilke der har filter-kategorien, i det her tilfælde tæppe/rug. Så for alle tæpper indsættes den samme template
+          // set clone data
+          clone.querySelector(".wine_image").innerHTML = `<img src="${vine.vin_billede.guid}" alt="${vine.vin_billede.post_title}">`;
+          clone.querySelector(".wine_name").innerHTML = vine.vin_navn;
+          clone.querySelector(".wine_description").innerHTML = vine.kort_beskrivelse;
+          clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af 6 flasker</p></b>`;
 
-        vin.forEach((vin) => {
-          if (filter == vin.vin_type) {
-            let template = `
-                        <h3>${vin.vin_navn}
-                        </h3>
-`;
-            dest.insertAdjacentHTML("beforeend", template);
-
-            dest.lastElementChild.addEventListener("click", () => {
-              location.href = "vin.html?id=" + vin.id;
-              //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
-            });
+          if (vine.pris_enkeltstyk != "") {
+            clone.querySelector(".wine_price").innerHTML = `<p>Ellers ${vine.pris_enkeltstyk} kr. pr. flaske</p>`;
           }
-        });
+
+          let theme = vine.vin_type;
+          clone.querySelector(".readmore").setAttribute("data-theme", theme);
+
+          document.querySelector(".wines").appendChild(clone);
+
+          document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
+            location.href = "vin.html?id=" + vine.id;
+            //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
+          });
+        }
       }
     </script>
     <script src="header.js"></script>

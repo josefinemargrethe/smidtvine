@@ -3,38 +3,35 @@
 window.addEventListener("DOMContentLoaded", loadJSON);
 
 function loadJSON() {
-  fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100")
+  fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/specialiteter?per_page=100")
     .then((response) => response.json())
-    .then((vine) => {
+    .then((specialiteter) => {
       //når JSON er loadet tager vi vores data med videre til prepareData
-      showData(vine);
+      showData(specialiteter);
     });
 }
 
-function showData(vine) {
+function showData(specialiteter) {
   // we are clearing the list
   document.querySelector(".wines").innerHTML = "";
 
   // we are building a new list
-  vine.forEach(displayData);
+  specialiteter.forEach(displayData);
 }
 
-function displayData(vine) {
+function displayData(specialiteter) {
   // create clone
   const clone = document.querySelector("template").content.cloneNode(true);
 
   // set clone data
-  clone.querySelector(".wine_image").innerHTML = `<img src="${vine.vin_billede.guid}" alt="${vine.vin_billede.post_title}">`;
-  clone.querySelector(".wine_name").innerHTML = vine.vin_navn;
-  clone.querySelector(".wine_description").innerHTML = vine.kort_beskrivelse;
-  clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af 6 flasker</p></b>`;
+  clone.querySelector(".wine_image").innerHTML = `<img src="${specialiteter.specialitet_billede.guid}" alt="${specialiteter.specialitet_billede.post_title}">`;
+  clone.querySelector(".wine_name").innerHTML = specialiteter.specialitet_navn;
+  clone.querySelector(".wine_description").innerHTML = specialiteter.kort_beskrivelse;
+  clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${specialiteter.specialitet_pris} kr.</p></b>`;
 
-  if (vine.pris_enkeltstyk != "") {
-    clone.querySelector(".wine_price").innerHTML = `<p>Ellers ${vine.pris_enkeltstyk} kr. pr. flaske</p>`;
+  if (specialiteter.flerstykspris != "") {
+    clone.querySelector(".wine_price").innerHTML = `<p>Tag 4 glas for ${specialiteter.flerstykspris} kr.</p>`;
   }
-
-  let theme = vine.vin_type;
-  clone.querySelector(".readmore").setAttribute("data-theme", theme);
 
   document.querySelector(".wines").appendChild(clone);
 
@@ -76,13 +73,13 @@ function displayData(vine) {
   // vine.forEach(styleButton(wineCategory));
 
   document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
-    location.href = "vin.html?id=" + vine.id;
+    location.href = "specialitet.html?id=" + specialiteter.id;
     //her vil browseren hente siden product.html, og den vil desuden give siden en variabel,x, som er lig med item.id.
   });
 }
 
 // function styleButton(wineCategory) {
 //   console.log(wineCategory);
-//   let theme = vine.vin_type;
+//   let theme = wineCategory;
 //   document.querySelector(".readmore").setAttribute("data-theme", theme);
 // }
