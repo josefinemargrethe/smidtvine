@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+      .vine_headline {
+        background-image: linear-gradient(90deg, transparent 50%, var(--redWineColor) 0);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="mobil">
+      <nav class="mobil">
+        <div id="myNav" class="overlay mobile_nav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <div class="overlay-content">
+            <a href="index.html"><img src="img/logo.png" alt="Smidt Vine logo" class="burger_logo" /></a>
+            <a href="index.html">Hjem</a>
+            <a href="allevine.html">Vine</a>
+            <a href="allespecialiteter.html">Specialiteter</a>
+            <a href="moed_smidtvine.html">Mød Smidt Vine</a>
+            <a href="om.html">Om Smidt Vine</a>
+            <p>Mød Vinbønderne</p>
+            <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
+            <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
+            <a href="kontakt.html">Kontakt</a>
+          </div>
+        </div>
+        <span class="openbtn" onclick="openNav()">&#9776;</span>
+      </nav>
+    </header>
+    <header class="desktop">
+      <nav class="desktop desktop_nav" id="desktop_nav">
+        <a href="index.html">Hjem</a>
+        <a href="allevine.html">Vine</a>
+        <a href="allespecialiteter.html">Specialiteter</a>
+        <a href="moed_smidtvine.html">Mød Smidt Vine</a>
+        <a href="om.html">Om Smidt Vine</a>
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn"><b>Mød vinbønderne</b></button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
+            <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
+          </div>
+        </div>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="vine_headline">
+        <h1><span class="vine_headline">Mød Vinbønderne - Josep i Mont Sant</span></h1>
+      </section>
+
+      <section id="moed_vinbonden">
+        <article class="content">
+          <aside id="contextnav">
+            <nav>
+              <a href="#nicoschmitt">Josep Grau i Mont Sant</a>
+              <a href="#vinomraadet">Mont Sant vinområdet</a>
+              <a href="nico_mosel.html">Læs om Nico i Mosel her</a>
+            </nav>
+          </aside>
+
+          <div id="vinbonde_content"></div>
+          <template>
+            <article id="josepgrau">
+              <div class="josep_text"><p></p></div>
+              <div class="josep_image"></div>
+            </article>
+            <article id="vinomraadet">
+              <h2>Mont Sant vinområdet</h2>
+              <div class="vinomraadet_wrapper">
+                <div class="montsant_text"><p></p></div>
+                <div class="montsant_image"></div>
+              </div>
+            </article>
+          </template>
+        </article>
+      </section>
+    </main>
+
+    <footer id="mobile_footer">
+      <a href="index.html"><img src="img/logo2.png" alt="Smidt Vine logo" class="footer_logo" /></a>
+      <article class="footer_wrapper">
+        <article>
+          <p>Smidt Vine</p>
+          <p>v/Bruno Kristensen</p>
+          <p>Strandvej 75</p>
+          <p>5700 Svendborg</p>
+          <p class="cvr">CVR: 37223115</p>
+        </article>
+        <article>
+          <p>Kontakt:</p>
+          <p>Telefon: 21 95 08 75</p>
+          <p>
+            Mail: <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
+          </p>
+          <a href="https://facebook.com/smidtvine" target="_blank">Følg Smidt Vine på Facebook!</a>
+        </article>
+      </article>
+    </footer>
+    <footer id="desk_footer">
+      <a href="index.html"><img src="img/logo2.png" alt="Smidt Vine logo" class="footer_logo" /></a>
+      <p>
+        Smidt Vine v/Bruno Kristensen. Strandvej 75. 5700 Svendborg. Cvr: 37223115. Kontakt: Telefon: 21 95 08 75. Mail:
+        <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
+      </p>
+    </footer>
+
+    <script>
+      "use strict";
+      const mq = window.matchMedia("(min-width: 800px)");
+
+      window.addEventListener("DOMContentLoaded", loadJSON);
+
+      function loadJSON() {
+        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vinbonde_josep")
+          .then((response) => response.json())
+          .then((jsonData) => {
+            //når JSON er loadet tager vi vores data med videre til prepareData
+            showData(jsonData);
+          });
+      }
+
+      function showData(jsonData) {
+        // we are clearing the list
+        document.querySelector("#vinbonde_content").innerHTML = "";
+
+        // we are building a new list
+        jsonData.forEach(displayData);
+      }
+
+      function displayData(jsonData) {
+        // create clone
+        const clone = document.querySelector("template").content.cloneNode(true);
+
+        // set clone data
+        clone.querySelector(".josep_text").innerHTML = jsonData.josep_tekst;
+        clone.querySelector(".josep_image").innerHTML = `<img src="${jsonData.josep_billede.guid}" alt="${jsonData.josep_billede.post_title}" class="para_1">`;
+
+        clone.querySelector(".montsant_text").innerHTML = jsonData.montsant_tekst;
+        clone.querySelector(".montsant_image").innerHTML = `<img src="${jsonData.montsant_billede.guid}" alt="${jsonData.montsant_billede.post_title}" class="para_2">`;
+
+        document.querySelector("#vinbonde_content").appendChild(clone);
+
+        if (mq.matches) {
+          scrollLoop();
+        }
+        // If media query matches
+      }
+
+      function scrollLoop(e) {
+        let para = document.querySelector(".para_1");
+        let para2 = document.querySelector(".para_2");
+
+        let yScrollPosition;
+
+        yScrollPosition = window.scrollY;
+
+        setTranslate(0, yScrollPosition * +0.08, para);
+        setTranslate(0, yScrollPosition * +0.04, para2);
+
+        requestAnimationFrame(scrollLoop);
+      }
+
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+      }
+
+      //desktopPil(); // Call listener function at run time
+      mq.addListener(displayData); // Attach listener function on state changes
+    </script>
+    <script src="header.js"></script>
+  </body>
+</html>

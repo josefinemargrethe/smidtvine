@@ -46,11 +46,8 @@
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
-          <p class="dropbtn">
-            Mød Vinbønderne
-            <i class="fa fa-caret-down"></i>
-          </p>
-          <div class="dropdown-content">
+          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <div id="myDropdown" class="dropdown-content">
             <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
@@ -78,7 +75,7 @@
           <div id="single_wrapper">
             <div id="singleview"></div>
             <div id="interesse">
-              <h3>Relaterede produkter</h3>
+              <!-- <h3>Relaterede produkter</h3> -->
             </div>
             <div id="mix_match"></div>
           </div>
@@ -160,8 +157,8 @@
 
             if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej") {
               document.querySelector("#mix_match").innerHTML += `
- 
-      
+
+
         <div class="single_wine">
           <a href="vin.html?id=${mix.id}"><div class="wine_image"><img src="${mix.vin_billede.guid}" alt="${mix.vin_billede.post_title}"> </div>
                     <div class="wine_info">
@@ -171,7 +168,7 @@
                       <p class="wine_price">Ellers ${mix.pris_enkeltstyk} kr. pr. flaske</p>
                       </a>
       </div>
-   
+
       `;
             }
           });
@@ -215,13 +212,31 @@
                       <h2 class="wine_name">${vin.vin_navn}</h2>
                       <p class="wine_description">${vin.kort_beskrivelse}</p>
                       <p class="wine_price_six" style="color:rgb(192, 98, 98);">${vin.vin_navn} er desværre midlertidigt udsolgt!</p>
-                     
+
       </div>
       </div>
       <div class="middle"><h3>Mere info</h3>${vin.vin_info1}</div>
       <div class="right">${vin.vin_info2}</div>
                               </article>
                               `;
+            document.querySelector("#interesse").innerHTML = `<h3>Glad for ${vin.vin_type}? Så er du måske interesseret i:</h3>`;
+          } else if (vin.udsolgt == "nej" && vin.pris_enkeltstyk == "") {
+            document.querySelector("#singleview").innerHTML = `
+                              <article class = "single_product">
+      <div class="single_wine">
+                    <div class="wine_image"><img src="${vin.vin_billede.guid}" alt="${vin.vin_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${vin.vin_navn}</h2>
+                      <p class="wine_description">${vin.kort_beskrivelse}</p>
+                      <p class="wine_price_six"><b>Pris: ${vin.pris_6flasker} kr. ved køb af 6 flasker</b></p>
+                      
+      </div>
+      </div>
+      <div class="middle"><h3>Mere info</h3>${vin.vin_info1}</div>
+      <div class="right">${vin.vin_info2}</div>
+                              </article>
+                              `;
+            document.querySelector("#interesse").innerHTML = `<h3>Glad for ${vin.vin_type}? Så er du måske interesseret i:</h3>`;
           } else {
             document.querySelector("#singleview").innerHTML = `
                               <article class = "single_product">
@@ -238,6 +253,7 @@
       <div class="right">${vin.vin_info2}</div>
                               </article>
                               `;
+            document.querySelector("#interesse").innerHTML = `<h3>Glad for ${vin.vin_type}? Så er du måske interesseret i:</h3>`;
           }
         }
 

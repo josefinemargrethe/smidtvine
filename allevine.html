@@ -37,11 +37,8 @@
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
-          <p class="dropbtn">
-            Mød Vinbønderne
-            <i class="fa fa-caret-down"></i>
-          </p>
-          <div class="dropdown-content">
+          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <div id="myDropdown" class="dropdown-content">
             <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
@@ -55,17 +52,21 @@
         <h1><span class="vine_headline">Vine</span></h1>
       </section>
 
+      <section id="intro">
+        <article class="fragt_info"></article>
+        <aside id="contextnav">
+          <nav>
+            <a href="allevine.html"><b>Alle vine</b></a>
+            <a href="roedvine.html">Rødvine</a>
+            <a href="hvidvine.html">Hvidvine</a>
+            <a href="rosevine.html">Rosé vine</a>
+            <a href="smagekasser.html">Smagekasser</a>
+          </nav>
+        </aside>
+      </section>
+
       <section id="wines">
         <article class="content">
-          <aside id="contextnav">
-            <nav>
-              <a href="allevine.html"><b>Alle vine</b></a>
-              <a href="roedvine.html">Rødvine</a>
-              <a href="hvidvine.html">Hvidvine</a>
-              <a href="rosevine.html">Rosé vine</a>
-              <a href="smagekasser.html">Smagekasser</a>
-            </nav>
-          </aside>
           <div class="wines"></div>
           <template>
             <article class="single_wine">
@@ -113,5 +114,6 @@
 
     <script src="vine.js"></script>
     <script src="header.js"></script>
+    <script src="fragt.js"></script>
   </body>
 </html>

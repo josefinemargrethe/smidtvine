@@ -13,7 +13,11 @@
       }
 
       #wines {
-        margin-top: 20vh;
+        margin: 20vh 3vw 3vw 0;
+      }
+
+      #wines img {
+        max-width: 100px;
       }
     </style>
   </head>
@@ -46,11 +50,8 @@
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
-          <p class="dropbtn">
-            Mød Vinbønderne
-            <i class="fa fa-caret-down"></i>
-          </p>
-          <div class="dropdown-content">
+          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <div id="myDropdown" class="dropdown-content">
             <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
@@ -157,62 +158,77 @@
 
             if (mix.hvilken_specialitet == itemType && mix.id != id && mix.udsolgt == "nej") {
               document.querySelector("#mix_match").innerHTML += `
-      <article class="colors">
-      <a href="vin.html?id=${mix.id}">
-          <img src="${mix.specialitet_billede.guid}" alt="${mix.specialitet_navn}">
-          </a>
-      </article>
+
+
+        <div class="single_wine">
+          <a href="specialitet.html?id=${mix.id}"><div class="wine_image"><img src="${mix.specialitet_billede.guid}" alt="${mix.specialitet_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${mix.specialitet_navn}</h2>
+                      <p class="wine_description">${mix.kort_beskrivelse}</p>
+                      <p class="wine_price_six"><b>Pris: ${mix.specialitet_pris} kr.</b></p>
+                      </a>
+      </div>
+
       `;
             }
           });
-
-          //   let interesse = document.querySelector("#interesse");
-
-          //   if (info.wine_type == "redwine") {
-          //     interesse.innerHTML += `<h2>Er du interesseret i rødvin? Se vores andre rødvine her</h2>`;
-          //   } else if (info.wine_type == "whitewine") {
-          //     interesse.innerHTML += `<h2>Er du interesseret i hvidvin? Se vores andre hvidvine her</h2>`;
-          //   } else if (info.wine_type == "rosewine") {
-          //     interesse.innerHTML += `<h2>Er du interesseret i rosé vin? Se vores andre rosé vine her</h2>`;
-          //   } else {
-          //     interesse.innerHTML += `<h2>Er du interesseret i smagekasser? Se vores andre smagekasser her</h2>`;
-          //   }
-
-          //   info.forEach((type) => {
-          //     if (type.wine_type == "redwine") {
-          //       interesse.innerHTML = `<h2>Er du interesseret i rødvin? Se vores andre rødvine her</h2>`;
-          //     } else if (type.wine_type == "whitewine") {
-          //       interesse.innerHTML = `<h2>Er du interesseret i hvidvin? Se vores andre hvidvine her</h2>`;
-          //     } else if (type.wine_type == "rosewine") {
-          //       interesse.innerHTML = `<h2>Er du interesseret i rosé vin? Se vores andre rosé vine her</h2>`;
-          //     } else {
-          //       interesse.innerHTML = `<h2>Er du interesseret i smagekasser? Se vores andre smagekasser her</h2>`;
-          //     }
-          //   });
         }
 
         //Her indsættes en HTML-artikel med produktdetaljer og billeder for det produkt, som vores id tilhører i array'et.
 
         function openProduct() {
-          //console.log("openproduct");
-
-          document.querySelector("#singleview").innerHTML = `
+          if (specialitet.udsolgt == "ja") {
+            document.querySelector("#singleview").innerHTML = `
                               <article class = "single_product">
       <div class="single_wine">
                     <div class="wine_image"><img src="${specialitet.specialitet_billede.guid}" alt="${specialitet.specialitet_billede.post_title}"> </div>
                     <div class="wine_info">
                       <h2 class="wine_name">${specialitet.specialitet_navn}</h2>
                       <p class="wine_description">${specialitet.kort_beskrivelse}</p>
-                      <p class="wine_price_six"><b>Pris: ${specialitet.specialitet_pris} kr. ved køb af 6 flasker</b></p>
-                      <p class="wine_price">Ellers ${specialitet.flerstykspris} kr. pr. flaske</p>
+                      <p class="wine_price_six" style="color:rgb(192, 98, 98);">${specialitet.specialitet_navn} er desværre midlertidigt udsolgt!</p>
+
       </div>
       </div>
-      <div class="middle"><h3>Beskrivelse</h3>${specialitet.specialitet_beskrivelse}</div>
+      <div class="middle"><h3>Mere info</h3>${specialitet.specialitet_beskrivelse}</div>
       <div class="right"><h3>Serveringsforslag</h3>${specialitet.specialitet_serveringsforslag}</div>
-
-
                               </article>
                               `;
+            document.querySelector("#interesse").innerHTML = `<h3>Glad for ${specialitet.hvilken_specialitet}? Så er du måske interesseret i:</h3>`;
+          } else if (specialitet.udsolgt == "nej" && specialitet.flerstykspris == "") {
+            document.querySelector("#singleview").innerHTML = `
+                              <article class = "single_product">
+      <div class="single_wine">
+                    <div class="wine_image"><img src="${specialitet.specialitet_billede.guid}" alt="${specialitet.specialitet_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${specialitet.specialitet_navn}</h2>
+                      <p class="wine_description">${specialitet.kort_beskrivelse}</p>
+                      <p class="wine_price_six"><b>Pris: ${specialitet.specialitet_pris} kr.</b></p>
+                      
+      </div>
+      </div>
+      <div class="middle"><h3>Mere info</h3>${specialitet.specialitet_beskrivelse}</div>
+      <div class="right"><h3>Serveringsforslag</h3>${specialitet.specialitet_serveringsforslag}</div>
+                              </article>
+                              `;
+            document.querySelector("#interesse").innerHTML = `<h3>Glad for ${specialitet.hvilken_specialitet}? Så er du måske interesseret i:</h3>`;
+          } else {
+            document.querySelector("#singleview").innerHTML = `
+                              <article class = "single_product">
+      <div class="single_wine">
+                    <div class="wine_image"><img src="${specialitet.specialitet_billede.guid}" alt="${specialitet.specialitet_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${specialitet.specialitet_navn}</h2>
+                      <p class="wine_description">${specialitet.kort_beskrivelse}</p>
+                      <p class="wine_price_six"><b>Pris: ${specialitet.specialitet_pris} kr.</b></p>
+                      <p class="wine_price">Tag 4 glas for ${specialitet.flerstykspris} kr.</p>
+      </div>
+      </div>
+      <div class="middle"><h3>Mere info</h3>${specialitet.specialitet_beskrivelse}</div>
+      <div class="right"><h3>Serveringsforslag</h3>${specialitet.specialitet_serveringsforslag}</div>
+                              </article>
+                              `;
+            document.querySelector("#interesse").innerHTML = `<h3>Glad for ${specialitet.hvilken_specialitet}? Så er du måske interesseret i:</h3>`;
+          }
         }
 
         getJson();

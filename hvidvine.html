@@ -11,6 +11,10 @@
       .vine_headline {
         background-image: linear-gradient(90deg, transparent 50%, #b5c10e 0);
       }
+
+      .fragt_info {
+        border: 3px solid var(--whiteWineColor);
+      }
     </style>
   </head>
   <body>
@@ -37,16 +41,13 @@
     <header class="desktop">
       <nav class="desktop desktop_nav" id="desktop_nav">
         <a href="index.html">Hjem</a>
-        <a href="allevine.html"><strong>Vine</strong></a>
+        <a href="allevine.html"><b>Vine</b></a>
         <a href="allespecialiteter.html">Specialiteter</a>
         <a href="moed_smidtvine.html">Mød Smidt Vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
-          <p class="dropbtn">
-            Mød Vinbønderne
-            <i class="fa fa-caret-down"></i>
-          </p>
-          <div class="dropdown-content">
+          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <div id="myDropdown" class="dropdown-content">
             <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
@@ -60,17 +61,21 @@
         <h1><span class="vine_headline">Hvidvine</span></h1>
       </section>
 
+      <section id="intro">
+        <article class="fragt_info"></article>
+        <aside id="contextnav">
+          <nav>
+            <a href="allevine.html">Alle vine</a>
+            <a href="roedvine.html">Rødvine</a>
+            <a href="hvidvine.html"><b>Hvidvine</b></a>
+            <a href="rosevine.html">Rosé vine</a>
+            <a href="smagekasser.html">Smagekasser</a>
+          </nav>
+        </aside>
+      </section>
+
       <section id="wines">
         <article class="content">
-          <aside id="contextnav">
-            <nav>
-              <a href="allevine.html">Alle vine</a>
-              <a href="roedvine.html">Rødvine</a>
-              <a href="hvidvine.html"><b>Hvidvine</b></a>
-              <a href="rosevine.html">Rosé vine</a>
-              <a href="smagekasser.html">Smagekasser</a>
-            </nav>
-          </aside>
           <div class="wines"></div>
           <template>
             <article class="single_wine">
@@ -174,5 +179,6 @@
       }
     </script>
     <script src="header.js"></script>
+    <script src="fragt.js"></script>
   </body>
 </html>

@@ -37,11 +37,8 @@
         <a href="moed_smidtvine.html"><b>Mød Smidt Vine</b></a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
-          <p class="dropbtn">
-            Mød Vinbønderne
-            <i class="fa fa-caret-down"></i>
-          </p>
-          <div class="dropdown-content">
+          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <div id="myDropdown" class="dropdown-content">
             <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
@@ -126,6 +123,9 @@
     </footer>
 
     <script>
+      "use strict";
+      const mq = window.matchMedia("(min-width: 800px)");
+
       window.addEventListener("DOMContentLoaded", loadJSON);
 
       function loadJSON() {
@@ -151,18 +151,48 @@
 
         // set clone data
         clone.querySelector(".start_text").innerHTML = jsonData.start_tekst;
-        clone.querySelector(".start_image").innerHTML = `<img src="${jsonData.start_billede.guid}" alt="${jsonData.start_billede.post_title}">`;
+        clone.querySelector(".start_image").innerHTML = `<img src="${jsonData.start_billede.guid}" alt="${jsonData.start_billede.post_title}" class="para_1">`;
 
         clone.querySelector(".garage_text").innerHTML = jsonData.garage_tekst;
-        clone.querySelector(".garage_image").innerHTML = `<img src="${jsonData.garage_billede.guid}" alt="${jsonData.garage_billede.post_title}">`;
+        clone.querySelector(".garage_image").innerHTML = `<img src="${jsonData.garage_billede.guid}" alt="${jsonData.garage_billede.post_title}" class="para_2">`;
 
         clone.querySelector(".vinsmagning_text").innerHTML = jsonData.vinsmagning_tekst;
-        clone.querySelector(".vinsmagning_image").innerHTML = `<img src="${jsonData.vinsmagning_billede.guid}" alt="${jsonData.vinsmagning_billede.post_title}">`;
+        clone.querySelector(".vinsmagning_image").innerHTML = `<img src="${jsonData.vinsmagning_billede.guid}" alt="${jsonData.vinsmagning_billede.post_title}" class="para_3">`;
 
         clone.querySelector(".vinfestival_text").innerHTML = jsonData.vinfestival_tekst;
-        clone.querySelector(".vinfestival_image").innerHTML = `<img src="${jsonData.vinfestival_billede.guid}" alt="${jsonData.vinfestival_billede.post_title}">`;
+        clone.querySelector(".vinfestival_image").innerHTML = `<img src="${jsonData.vinfestival_billede.guid}" alt="${jsonData.vinfestival_billede.post_title}" class="para_4">`;
         document.querySelector("#meet_content").appendChild(clone);
+
+        if (mq.matches) {
+          scrollLoop();
+        }
+        // If media query matches
       }
+
+      function scrollLoop(e) {
+        let para = document.querySelector(".para_1");
+        let para2 = document.querySelector(".para_2");
+        let para3 = document.querySelector(".para_3");
+        let para4 = document.querySelector(".para_4");
+
+        let yScrollPosition;
+
+        yScrollPosition = window.scrollY;
+
+        setTranslate(0, yScrollPosition * +0.04, para);
+        setTranslate(0, yScrollPosition * +0.04, para2);
+        setTranslate(0, yScrollPosition * +0.04, para3);
+        setTranslate(0, yScrollPosition * +0.04, para4);
+
+        requestAnimationFrame(scrollLoop);
+      }
+
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+      }
+
+      //desktopPil(); // Call listener function at run time
+      mq.addListener(displayData); // Attach listener function on state changes
     </script>
     <script src="header.js"></script>
   </body>
