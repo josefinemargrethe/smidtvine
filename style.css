@@ -1,45 +1,4 @@
 /*********************    BASIC    ***********************/
-.readmore[data-theme="rødvin"] {
-  --wine-color: #7099d0;
-}
-
-.readmore[data-theme="hvidvin"] {
-  --wine-color: #b5c10e;
-}
-.readmore[data-theme="rosé vin"] {
-  --wine-color: #be6580;
-}
-
-.readmore[data-theme="smagekasser"] {
-  --wine-color: #9bcbcb;
-}
-
-.readmore[data-theme="specialiteter"] {
-  --wine-color: #a8a400;
-}
-
-.readmore {
-  border: 1px solid var(--wine-color);
-  color: var(--wine-color);
-  background-color: transparent;
-  border-radius: 5px;
-  padding: 1.5vw;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #f2f0ed;
-  margin: 0;
-}
-
-img {
-  width: 100%;
-  /* height: 100%; */
-}
-
 :root {
   --textColor: #2d3a4a;
   --bagColor: #f2f0ed;
@@ -51,6 +10,69 @@ img {
   --specialitetColor: #a8a400;
   --fontMain: "Poppins", sans-serif;
   --fontHead: "Playfair Display", serif;
+}
+
+.readmore[data-theme="rødvin"],
+.wine_name[data-theme="rødvin"],
+.fragt_info[data-theme="rødvin"],
+.important_text[data-theme="rødvin"] {
+  --wine-color: #7099d0;
+}
+
+.readmore[data-theme="hvidvin"],
+.wine_name[data-theme="hvidvin"],
+.fragt_info[data-theme="hvidvin"],
+.important_text[data-theme="hvidvin"] {
+  --wine-color: #b5c10e;
+}
+.readmore[data-theme="rosé vin"],
+.wine_name[data-theme="rosé vin"],
+.fragt_info[data-theme="rosé vin"],
+.important_text[data-theme="rosé vin"] {
+  --wine-color: #be6580;
+}
+
+.readmore[data-theme="smagekasser"],
+.wine_name[data-theme="smagekasser"],
+.fragt_info[data-theme="smagekasser"],
+.important_text[data-theme="smagekasser"] {
+  --wine-color: #9bcbcb;
+}
+
+.readmore[data-theme="specialiteter"],
+.wine_name[data-theme="specialiteter"],
+.fragt_info[data-theme="specialiteter"],
+.important_text[data-theme="specialiteter"] {
+  --wine-color: #a8a400;
+}
+
+.readmore {
+  border: 2px solid var(--wine-color);
+  color: var(--wine-color);
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 1.4vw;
+  font-family: var(--fontMain);
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bagColor);
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  /* height: 100%; */
+}
+
+/*Skjuler scrollbar, så produkterne fremstår bedre i grid*/
+::-webkit-scrollbar {
+  display: none;
 }
 
 h1,
@@ -124,7 +146,7 @@ footer p {
   top: 10%;
   width: 100%;
   left: 10vw;
-  margin-top: 30px;
+  overflow-x: hidden;
 }
 
 .overlay a {
@@ -177,6 +199,7 @@ nav .mobile p {
   width: 150px;
   margin-left: 20%;
   margin-bottom: 10%;
+  animation: swinging 3.5s ease-in-out forwards infinite;
 }
 
 .logo_con {
@@ -225,22 +248,37 @@ header .desktop {
 
 .logo {
   position: absolute;
-  top: 25vh;
-  left: 5vh;
-  width: 50%;
+  top: 28vh;
+  left: 8vh;
+  width: 65%;
   /* padding-top: 40vh; */
   /* color: white; */
   animation: fade-in 1.5s both;
-  animation-delay: 0.5s;
+  animation-delay: 1s;
+  /* animation: swinging 3.5s ease-in-out forwards infinite; */
+}
+
+@keyframes swinging {
+  0% {
+    transform: rotate(3deg);
+  }
+
+  50% {
+    transform: rotate(-1deg);
+  }
+
+  100% {
+    transform: rotate(3deg);
+  }
 }
 
 #splash h2 {
   position: absolute;
-  top: 34vh;
+  top: 44vh;
   left: 5vh;
   font-size: 1.2rem;
   animation: fade-in 1.5s both;
-  animation-delay: 2s;
+  animation-delay: 2.5s;
 }
 
 @keyframes fade-in {
@@ -259,74 +297,83 @@ header .desktop {
 
 .scroll-down {
   position: absolute;
-  left: 50%;
-  bottom: 25px;
+  bottom: 1vw;
   display: block;
   text-align: center;
-  font-size: 25px;
-  z-index: 100;
   text-decoration: none;
   text-shadow: none;
-  width: 25px;
-  height: 25px;
-  border-bottom: 4px solid var(--textColor);
-  border-right: 4px solid var(--textColor);
   z-index: 9;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0%) rotate(45deg);
-  -moz-transform: translate(-50%, 0%) rotate(45deg);
-  transform: translate(-50%, 0%) rotate(45deg);
+  left: 40vw;
+
   -webkit-animation: fade_move_down 3s ease-in-out infinite;
   -moz-animation: fade_move_down 3s ease-in-out infinite;
   animation: fade_move_down 2s ease-in-out infinite;
 }
+/* 
+.scroll-down-arrow {
+  font-size: 25px;
+  z-index: 100;
+  -webkit-transform: translate(-50%, 0%) rotate(45deg);
+  -moz-transform: translate(-50%, 0%) rotate(45deg);
+  transform: translate(-50%, 0%) rotate(45deg);
+  width: 25px;
+  height: 25px;
+  border-bottom: 4px solid var(--textColor);
+  border-right: 4px solid var(--textColor);
+} */
 
 /*animated scroll arrow animation*/
 @-webkit-keyframes fade_move_down {
   0% {
-    -webkit-transform: translate(0, -10px) rotate(45deg);
+    -webkit-transform: translate(0, -10px);
     opacity: 0;
   }
 
   50% {
+    -webkit-transform: translate(0, 10px);
+
     opacity: 1;
   }
 
   100% {
-    -webkit-transform: translate(0, 10px) rotate(45deg);
+    -webkit-transform: translate(0, -10px);
     opacity: 0;
   }
 }
 
 @-moz-keyframes fade_move_down {
   0% {
-    -moz-transform: translate(0, -10px) rotate(45deg);
+    -moz-transform: translate(0, -10px);
     opacity: 0;
   }
 
   50% {
+    -moz-transform: translate(0, 10px);
+
     opacity: 1;
   }
 
   100% {
-    -moz-transform: translate(0, 10px) rotate(45deg);
+    -moz-transform: translate(0, -10px);
     opacity: 0;
   }
 }
 
 @keyframes fade_move_down {
   0% {
-    transform: translate(0, -7px) rotate(45deg);
-    opacity: 0;
+    transform: translate(0, -7px);
+    opacity: 0.8;
   }
 
   50% {
+    transform: translate(0, 7px);
+
     opacity: 1;
   }
 
   100% {
-    transform: translate(0, 7px) rotate(45deg);
-    opacity: 0;
+    transform: translate(0, -7px);
+    opacity: 0.8;
   }
 }
 
@@ -361,8 +408,9 @@ footer {
 }
 
 #mobile_footer img {
-  width: 50%;
+  width: 40%;
   padding: 2vh;
+  animation: swinging 3.5s ease-in-out forwards infinite;
 }
 
 #mobile_footer p {
@@ -392,9 +440,18 @@ footer {
   font-size: 3rem;
 }
 
+.important_text {
+  background-image: linear-gradient(90deg, transparent 50%, var(--wine-color) 0);
+  background-origin: 0;
+  background-size: 200% 30%;
+  background-repeat: repeat-x;
+  background-position: -130% 90%;
+  transition: background-position 1.5s;
+}
+
 .fragt_info {
   margin: 3vw;
-  border: 3px solid white;
+  border: 3px solid var(--wine-color);
   padding: 2vw;
   border-radius: 10px;
 }
@@ -413,6 +470,11 @@ footer {
   display: grid;
   grid-template-columns: 40% 60%;
   margin-top: 5vh;
+  cursor: pointer;
+}
+
+.single_wine h2 {
+  font-size: 1.2rem;
 }
 
 #wines img {
@@ -429,9 +491,9 @@ footer {
   font-size: 0.8rem;
 }
 
-.single_product h2 {
+/* .single_product h2 {
   color: var(--wine-color);
-}
+} */
 
 #interesse {
   margin-top: 7vw;
@@ -458,6 +520,13 @@ footer {
   margin: 3vw;
 }
 
+#about_content {
+  margin: 3vw;
+}
+
+#løfter {
+  margin-top: 5vw;
+}
 /****************        OM SLUT          ************/
 /****************        OM JOSEP           ************/
 
@@ -473,6 +542,10 @@ footer {
 /****************        KONTAKT           ************/
 #kontakt {
   margin: 3vw;
+}
+
+#kontakt a {
+  text-decoration: underline;
 }
 
 #kontakt svg {
@@ -527,7 +600,7 @@ footer {
 /****************MEDIA QUERIES************/
 /****************MEDIA QUERIES************/
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 768px) {
   .readmore {
     padding: 0.7vw;
   }
@@ -552,7 +625,15 @@ footer {
     margin: auto;
     justify-content: center;
     flex-wrap: nowrap;
-    margin-top: 1vw;
+    padding: 1vw;
+  }
+
+  .nav_bg {
+    background-color: #f2f0ed77;
+  }
+
+  .nav_bg #myDropdown {
+    background-color: #f2f0ed77;
   }
 
   .desktop a {
@@ -622,7 +703,7 @@ footer {
 
   #splash h2 {
     font-size: 2rem;
-    top: 43vh;
+    top: 49vh;
   }
 
   /*************** HERO SLUT ****************/
@@ -701,6 +782,11 @@ footer {
 
   #desk_footer img {
     width: 60%;
+    animation: swinging 3.5s ease-in-out forwards infinite;
+  }
+
+  .scroll-down {
+    left: 46vw;
   }
 
   /*************** FORSIDE SLUT ****************/
@@ -784,6 +870,10 @@ footer {
     grid-gap: 5vh;
   }
 
+  .single_product .right {
+    margin-top: 4vw;
+  }
+
   .single_product .wine_image {
     align-self: initial;
   }
@@ -800,6 +890,25 @@ footer {
 
   #mix_match a {
     font-weight: 400;
+  }
+
+  #promises {
+    margin-left: 18vw;
+    padding: 3vw;
+  }
+
+  #promises p {
+    font-size: 0.8rem;
+  }
+
+  .promises_wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+  }
+
+  #promises img {
+    max-width: 40%;
   }
 
   /*************** SPECIALITETER SLUT ****************/
@@ -885,27 +994,37 @@ footer {
 
   /*************** MØD SMIDT VINE SLUT ****************/
   /*************** OM SMIDT VINE START ****************/
-  #om_smidtvine p {
+  #about_smidtvine p {
     font-size: 0.8rem;
   }
 
-  #om1_wrapper,
-  #om2_wrapper,
-  #om3_wrapper,
-  #om4_wrapper {
+  #historie,
+  .lokal_wrapper,
+  .unik_wrapper,
+  .personlig_wrapper {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     /* grid-template-rows: 100px; */
     margin: 5vw 5vw 0 5vw;
   }
 
-  #om_smidtvine {
+  .lokal_wrapper img,
+  .unik_wrapper img,
+  .personlig_wrapper img {
+    max-width: 60%;
+  }
+
+  #about_smidtvine {
     margin: 5vw 5vw 5vw 0;
   }
 
-  #om_smidtvine img {
-    width: 100%;
+  #about_content {
+    margin-left: 18vw;
   }
+
+  /* #about_smidtvine img {
+    width: 100%;
+  } */
 
   /* #garagesalg,
   #vinsmagning,
@@ -913,8 +1032,8 @@ footer {
     margin-top: 5vw;
   } */
 
-  .om1_text,
-  .om3_text {
+  .historie_text,
+  .unik_text {
     grid-column: 6 / end;
     grid-row: 1;
     background-color: #f2f0ed80;
@@ -922,8 +1041,8 @@ footer {
     padding: 2vw;
   }
 
-  .om2_text,
-  .om4_text {
+  .lokal_text,
+  .personlig_text {
     grid-column: 1 / 7;
     grid-row: 1;
     background-color: #f2f0ed80;
@@ -931,14 +1050,14 @@ footer {
     padding: 2vw;
   }
 
-  .om1_image,
-  .om3_image {
+  .historie_image,
+  .unik_image {
     grid-column: 1 / 7;
     grid-row: 1;
   }
 
-  .om2_image,
-  .om4_image {
+  .lokal_image,
+  .personlig_image {
     grid-column: 6 / end;
     grid-row: 1;
   }
@@ -1000,6 +1119,10 @@ footer {
     grid-row: 1;
   }
 
+  #moed_vinbonden h2 {
+    margin-left: 3vw;
+  }
+
   /*************** OM VINBØNDERNE SLUT ****************/
   /*************** KONATKT START ****************/
 
@@ -1011,5 +1134,6 @@ footer {
   #kontakt {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2vw;
   }
 }

@@ -19,7 +19,7 @@ function showData(jsonData) {
 
 function displayData(jsonData) {
   // create clone
-  const clone = document.querySelector("template").content.cloneNode(true);
+  const clone = document.querySelector("#index_template").content.cloneNode(true);
 
   // set clone data
   clone.querySelector(".index_text").innerHTML = jsonData.forside_tekst1;

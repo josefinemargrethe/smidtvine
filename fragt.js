@@ -1,5 +1,5 @@
 "use strict";
-let info = [];
+let fragt = [];
 
 document.addEventListener("DOMContentLoaded", start);
 
@@ -10,14 +10,13 @@ function start() {
     let url = "https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/kontakt/170";
     let jsonData = await fetch(url);
 
-    info = await jsonData.json();
+    fragt = await jsonData.json();
 
     visData();
   }
 
   function visData() {
-    console.log(info);
-    document.querySelector(".fragt_info").innerHTML = info.kontakt_info;
+    document.querySelector(".fragt_info").innerHTML = fragt.kontakt_info;
   }
   hentJson();
 }

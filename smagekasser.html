@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Smagekasser fra Smidt Vine</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
     <style>
       .vine_headline {
         background-image: linear-gradient(90deg, transparent 50%, #9bcbcb 0);
@@ -23,7 +26,7 @@
         <div id="myNav" class="overlay mobile_nav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <div class="overlay-content">
-            <a href="index.html"><img src="img/logo.png" alt="Smidt Vine logo" class="burger_logo" /></a>
+            <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="burger_logo" /></a>
             <a href="index.html">Hjem</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
@@ -39,7 +42,7 @@
       </nav>
     </header>
     <header class="desktop">
-      <nav class="desktop desktop_nav" id="desktop_nav">
+      <nav class="desktop desktop_nav nav_bg" id="desktop_nav">
         <a href="index.html">Hjem</a>
         <a href="allevine.html"><b>Vine</b></a>
         <a href="allespecialiteter.html">Specialiteter</a>
@@ -62,7 +65,12 @@
       </section>
 
       <section id="intro">
-        <article class="fragt_info"></article>
+        <article class="fragt_info">
+          <p>
+            Husk at vi altid har <span class="important_text">gratis fragt og dag-til-dag levering i 5700 Svendborg.</span> Ved køb for mere end 500 kr. er der også gratis fragt på resten af Fyn. Du
+            kan også <span class="important_text">altid hente dine varer på vores adresse i Svendborg.</span> Læs mere om hvordan du køber hos os her.
+          </p>
+        </article>
         <aside id="contextnav">
           <nav>
             <a href="allevine.html">Alle vine</a>
@@ -94,7 +102,7 @@
     </main>
 
     <footer id="mobile_footer">
-      <a href="index.html"><img src="img/logo2.png" alt="Smidt Vine logo" class="footer_logo" /></a>
+      <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="footer_logo" /></a>
       <article class="footer_wrapper">
         <article>
           <p>Smidt Vine</p>
@@ -114,7 +122,7 @@
       </article>
     </footer>
     <footer id="desk_footer">
-      <a href="index.html"><img src="img/logo2.png" alt="Smidt Vine logo" class="footer_logo" /></a>
+      <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="footer_logo" /></a>
       <p>
         Smidt Vine v/Bruno Kristensen. Strandvej 75. 5700 Svendborg. Cvr: 37223115. Kontakt: Telefon: 21 95 08 75. Mail:
         <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
@@ -168,6 +176,7 @@
 
           let theme = vine.vin_type;
           clone.querySelector(".readmore").setAttribute("data-theme", theme);
+          document.querySelector(".important_text").setAttribute("data-theme", theme);
 
           document.querySelector(".wines").appendChild(clone);
 
@@ -179,6 +188,6 @@
       }
     </script>
     <script src="header.js"></script>
-    <script src="fragt.js"></script>
+    <!-- <script src="fragt.js"></script> -->
   </body>
 </html>
