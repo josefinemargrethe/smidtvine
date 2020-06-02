@@ -25,13 +25,13 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <div class="overlay-content">
             <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="burger_logo" /></a>
-            <a href="index.html">Hjem</a>
+            <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Mød Smidt Vine</a>
+            <a href="moed_smidtvine.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
-            <p>Mød Vinbønderne</p>
-            <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
+            <p>Vinbønderne</p>
+            <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
             <a href="kontakt.html">Kontakt</a>
           </div>
@@ -41,15 +41,15 @@
     </header>
     <header class="desktop">
       <nav class="desktop desktop_nav" id="desktop_nav">
-        <a href="index.html"><b>Hjem</b></a>
+        <a href="index.html"><b>Forside</b></a>
         <a href="allevine.html">Vine</a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html">Mød Smidt Vine</a>
+        <a href="moed_smidtvine.html">Smag vores vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
           <div id="myDropdown" class="dropdown-content">
-            <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
+            <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
         </div>
@@ -70,6 +70,44 @@
 
       <section id="headline"><h1>Velkommen til Smidt Vine!</h1></section>
 
+      <section id="index_content">
+        <div class="index_content"></div>
+        <template id="index_template">
+          <article class="index_wrapper">
+            <div class="index_text"><p></p></div>
+            <div class="index_image"></div>
+          </article>
+        </template>
+      </section>
+
+      <section id="promises">
+        <h2>Det særlige ved Smidt Vine</h2>
+        <p>
+          Når du handler hos Smidt Vine, så kan du regne med det vi siger og skriver. Vi har lavet tre løfter til dig som kunde.
+        </p>
+        <p>Læs mere om historien bag Smidt Vine og hvad vi lover jer, vores kunder, <a href="om.html#løfter">ved at klikke her</a></p>
+        <article class="promises_wrapper">
+          <article>
+            <a href="om.html">
+              <img src="img/støt_lokalt.png" alt="støt lokalt" />
+              <h4>Du støtter lokalt</h4>
+            </a>
+          </article>
+          <article>
+            <a href="om.html">
+              <img src="img/unikke_varer.png" alt="unikke" />
+              <h4>Du får unikke produkter</h4>
+            </a>
+          </article>
+          <article>
+            <a href="om.html">
+              <img src="img/personligt.png" alt="personligt" />
+              <h4>Du køber personligt</h4>
+            </a>
+          </article>
+        </article>
+      </section>
+
       <section id="mobile_cards">
         <a href="allevine.html"
           ><div><img src="img/rødvin.png" alt="rødvin" /></div
@@ -84,7 +122,6 @@
           ><div><p>Se vores udvalg af specialiteter her</p></div></a
         >
       </section>
-
       <section id="desk_cards">
         <div>
           <a href="roedvine.html"><img src="img/rødvin.png" alt="rødvin" /></a>
@@ -105,44 +142,6 @@
           <a href="allespecialiteter.html"><p>Se vores udvalg af specialiteter</p></a>
         </div>
       </section>
-
-      <section id="index_content">
-        <div class="index_content"></div>
-        <template id="index_template">
-          <article class="index_wrapper">
-            <div class="index_text"><p></p></div>
-            <div class="index_image"></div>
-          </article>
-        </template>
-      </section>
-
-      <section id="promises">
-        <h2>Vores løfte til dig</h2>
-        <p>
-          Når du handler hos Smidt Vine, så kan du regne med det vi siger og skriver. Vi har lavet tre løfter til dig som kunde.
-        </p>
-        <p>Læs mere om historien bag Smidt Vine og hvad vi lover jer, vores kunder, <a href="om.html#løfter">ved at klikke her</a></p>
-        <article class="promises_wrapper">
-          <article>
-            <a href="om.html#lokal">
-              <img src="img/støt_lokalt.png" alt="støt lokalt" />
-              <p>Du støtter lokalt</p>
-            </a>
-          </article>
-          <article>
-            <a href="om.html#unik">
-              <img src="img/unikke_varer.png" alt="unikke" />
-              <p>Du får unikke produkter</p>
-            </a>
-          </article>
-          <article>
-            <a href="om.html#personlig">
-              <img src="img/personligt.png" alt="personligt" />
-              <p>Du køber personligt</p>
-            </a>
-          </article>
-        </article>
-      </section>
     </main>
 
     <footer id="mobile_footer">
@@ -157,7 +156,7 @@
         </article>
         <article>
           <p>Kontakt:</p>
-          <p>Telefon: 21 95 08 75</p>
+          <p>Telefon: <a href="tel:21950875">21 95 08 75</a></p>
           <p>
             Mail: <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
           </p>
@@ -168,27 +167,81 @@
     <footer id="desk_footer">
       <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="footer_logo" /></a>
       <p>
-        Smidt Vine v/Bruno Kristensen. Strandvej 75. 5700 Svendborg. Cvr: 37223115. Kontakt: Telefon: 21 95 08 75. Mail:
+        Smidt Vine v/Bruno Kristensen. Strandvej 75. 5700 Svendborg. Cvr: 37223115. Kontakt: Telefon: <a href="tel:21950875">21 95 08 75</a>. Mail:
         <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
       </p>
     </footer>
 
     <script>
-      // When the user scrolls down 70px from the top of the document, show the button
+      //media query
+      const mq = window.matchMedia("(min-width: 800px)");
+
+      // Når man er nået vinduets højde nedad, kommer der baggrundsfarve på nav på desktop
       window.onscroll = function () {
         scrollFunction();
       };
+      window.addEventListener("DOMContentLoaded", loadJSON);
+
+      function loadJSON() {
+        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/forside")
+          .then((response) => response.json())
+          .then((jsonData) => {
+            //når JSON er loadet tager vi vores data med videre til prepareData
+            showData(jsonData);
+          });
+      }
+
+      function showData(jsonData) {
+        // we are clearing the list
+        document.querySelector(".index_content").innerHTML = "";
+
+        // we are building a new list
+        jsonData.forEach(displayData);
+      }
+
+      function displayData(jsonData) {
+        // create clone
+        const clone = document.querySelector("#index_template").content.cloneNode(true);
+
+        // set clone data
+        clone.querySelector(".index_text").innerHTML = jsonData.forside_tekst1;
+        clone.querySelector(".index_image").innerHTML = `<img src="${jsonData.forside_billede1.guid}" alt="${jsonData.forside_billede1.post_title}" class="para_image">`;
+
+        document.querySelector(".index_content").appendChild(clone);
+        if (mq.matches) {
+          scrollLoop();
+        }
+        // If media query matches go to function
+      }
+
+      function scrollLoop(e) {
+        let para = document.querySelector(".para_image");
+
+        let yScrollPosition;
+
+        yScrollPosition = window.scrollY;
+
+        setTranslate(0, yScrollPosition * 0.04, para);
+
+        requestAnimationFrame(scrollLoop);
+      }
+
+      function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+      }
 
       function scrollFunction() {
         console.log("Scroll funtion");
         if (document.body.scrollTop > window.innerHeight || document.documentElement.scrollTop > window.innerHeight) {
-          document.querySelector("#desktop_nav").style.backgroundColor = "#f2f0ed77";
+          document.querySelector("#desktop_nav").style.backgroundColor = "var(--bagColor)";
+          document.querySelector("#myDropdown").style.backgroundColor = "var(--bagColor)";
         } else {
           document.querySelector("#desktop_nav").style.backgroundColor = "transparent";
+          document.querySelector("#myDropdown").style.backgroundColor = "transparent";
         }
       }
     </script>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
     <script src="header.js"></script>
     <script src="hero.js"></script>
   </body>

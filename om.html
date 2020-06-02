@@ -18,13 +18,13 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <div class="overlay-content">
             <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="burger_logo" /></a>
-            <a href="index.html">Hjem</a>
+            <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Mød Smidt Vine</a>
+            <a href="moed_smidtvine.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
-            <p>Mød Vinbønderne</p>
-            <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
+            <p>Vinbønderne</p>
+            <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
             <a href="kontakt.html">Kontakt</a>
           </div>
@@ -34,15 +34,15 @@
     </header>
     <header class="desktop">
       <nav class="desktop desktop_nav nav_bg" id="desktop_nav">
-        <a href="index.html">Hjem</a>
+        <a href="index.html">Forside</a>
         <a href="allevine.html">Vine</a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html">Mød Smidt Vine</a>
+        <a href="moed_smidtvine.html">Smag vores vine</a>
         <a href="om.html"><b>Om Smidt Vine</b></a>
         <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn">Mød vinbønderne</button>
+          <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
           <div id="myDropdown" class="dropdown-content">
-            <a href="nico_mosel.html" class="mobilnav_vinbonde">- Nico i Mosel</a>
+            <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
             <a href="josep_montsant.html" class="mobilnav_vinbonde">- Josep i Mont Sant</a>
           </div>
         </div>
@@ -59,8 +59,9 @@
         <article class="content">
           <aside id="contextnav">
             <nav>
+              <p class="show_only">Oversigt</p>
               <a href="#vine_headline">Vores historie</a>
-              <a href="#løfter">Vores tre løfter</a>
+              <a href="#løfter">Det særlige ved Smidt Vine</a>
             </nav>
           </aside>
 
@@ -71,7 +72,7 @@
               <div class="historie_image"></div>
             </article>
             <article id="løfter">
-              <h2>Vores tre løfter</h2>
+              <h2>Det særlige ved Smidt Vine</h2>
               <div id="lokal" class="lokal_wrapper">
                 <div class="lokal_text"><p></p></div>
                 <div class="lokal_image"></div>
@@ -124,7 +125,7 @@
         </article>
         <article>
           <p>Kontakt:</p>
-          <p>Telefon: 21 95 08 75</p>
+          <p>Telefon: <a href="tel:21950875">21 95 08 75</a></p>
           <p>
             Mail: <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
           </p>
@@ -135,14 +136,13 @@
     <footer id="desk_footer">
       <a href="index.html"><img src="img/logo5.png" alt="Smidt Vine logo" class="footer_logo" /></a>
       <p>
-        Smidt Vine v/Bruno Kristensen. Strandvej 75. 5700 Svendborg. Cvr: 37223115. Kontakt: Telefon: 21 95 08 75. Mail:
+        Smidt Vine v/Bruno Kristensen. Strandvej 75. 5700 Svendborg. Cvr: 37223115. Kontakt: Telefon: <a href="tel:21950875">21 95 08 75</a>. Mail:
         <span><a href="mailto:info@smidtvine.dk" target="_blank">info@smidtvine.dk</a></span>
       </p>
     </footer>
 
     <script>
       "use strict";
-      const mq = window.matchMedia("(min-width: 800px)");
 
       window.addEventListener("DOMContentLoaded", loadJSON);
 
@@ -169,48 +169,51 @@
 
         // set clone data
         clone.querySelector(".historie_text").innerHTML = jsonData.historie_tekst;
-        clone.querySelector(".historie_image").innerHTML = `<img src="${jsonData.historie_billede.guid}" alt="${jsonData.historie_billede.post_title}" class="para_1">`;
+        clone.querySelector(".historie_image").innerHTML = `<img src="${jsonData.historie_billede.guid}" alt="${jsonData.historie_billede.slug}">`;
 
         clone.querySelector(".lokal_text").innerHTML = jsonData.lokal_tekst;
-        clone.querySelector(".lokal_image").innerHTML = `<img src="${jsonData.lokal_billede.guid}" alt="${jsonData.lokal_billede.post_title}" class="para_2">`;
+        clone.querySelector(".lokal_image").innerHTML = `<img src="${jsonData.lokal_billede.guid}" alt="${jsonData.lokal_billede.post_title}" class="anim2" data-delay=".1s" >`;
 
         clone.querySelector(".unik_text").innerHTML = jsonData.unik_tekst;
-        clone.querySelector(".unik_image").innerHTML = `<img src="${jsonData.unik_billede.guid}" alt="${jsonData.unik_billede.post_title}" class="para_3">`;
+        clone.querySelector(".unik_image").innerHTML = `<img src="${jsonData.unik_billede.guid}" alt="${jsonData.unik_billede.post_title}" class="anim" data-delay=".1s">`;
 
         clone.querySelector(".personlig_text").innerHTML = jsonData.personlig_tekst;
-        clone.querySelector(".personlig_image").innerHTML = `<img src="${jsonData.personlig_billede.guid}" alt="${jsonData.personlig_billede.post_title}" class="para_4">`;
+        clone.querySelector(".personlig_image").innerHTML = `<img src="${jsonData.personlig_billede.guid}" alt="${jsonData.personlig_billede.post_title}" class="anim2" data-delay=".1s">`;
         document.querySelector("#about_content").appendChild(clone);
 
-        if (mq.matches) {
-          scrollLoop();
-        }
-        // If media query matches
+        // intersection observer
+        const images = document.querySelectorAll(".anim");
+
+        let observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.intersectionRatio > 0) {
+              entry.target.style.animation = `anim1 1s ${entry.target.dataset.delay} forwards ease-out`;
+            } else {
+              entry.target.style.animation = "none";
+            }
+          });
+        });
+
+        images.forEach((image) => {
+          observer.observe(image);
+        });
+
+        const images2 = document.querySelectorAll(".anim2");
+
+        let observer2 = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.intersectionRatio > 0) {
+              entry.target.style.animation = `anim2 1s ${entry.target.dataset.delay} forwards ease-out`;
+            } else {
+              entry.target.style.animation = "none";
+            }
+          });
+        });
+
+        images2.forEach((image) => {
+          observer2.observe(image);
+        });
       }
-
-      function scrollLoop(e) {
-        let para = document.querySelector(".para_1");
-        let para2 = document.querySelector(".para_2");
-        let para3 = document.querySelector(".para_3");
-        let para4 = document.querySelector(".para_4");
-
-        let yScrollPosition;
-
-        yScrollPosition = window.scrollY;
-
-        setTranslate(0, yScrollPosition * +0.04, para);
-        setTranslate(0, yScrollPosition * +0.03, para2);
-        setTranslate(0, yScrollPosition * +0.02, para3);
-        setTranslate(0, yScrollPosition * +0.01, para4);
-
-        requestAnimationFrame(scrollLoop);
-      }
-
-      function setTranslate(xPos, yPos, el) {
-        el.style.transform = `translate3d(0, ${yPos}px, 0)`;
-      }
-
-      //desktopPil(); // Call listener function at run time
-      mq.addListener(displayData); // Attach listener function on state changes
     </script>
     <script src="header.js"></script>
   </body>

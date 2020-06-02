@@ -15,34 +15,34 @@
 .readmore[data-theme="rødvin"],
 .wine_name[data-theme="rødvin"],
 .fragt_info[data-theme="rødvin"],
-.important_text[data-theme="rødvin"] {
+.btn[data-theme="rødvin"] {
   --wine-color: #7099d0;
 }
 
 .readmore[data-theme="hvidvin"],
 .wine_name[data-theme="hvidvin"],
 .fragt_info[data-theme="hvidvin"],
-.important_text[data-theme="hvidvin"] {
+.btn[data-theme="hvidvin"] {
   --wine-color: #b5c10e;
 }
 .readmore[data-theme="rosé vin"],
 .wine_name[data-theme="rosé vin"],
 .fragt_info[data-theme="rosé vin"],
-.important_text[data-theme="rosé vin"] {
+.btn[data-theme="rosé vin"] {
   --wine-color: #be6580;
 }
 
 .readmore[data-theme="smagekasser"],
 .wine_name[data-theme="smagekasser"],
 .fragt_info[data-theme="smagekasser"],
-.important_text[data-theme="smagekasser"] {
+.btn[data-theme="smagekasser"] {
   --wine-color: #9bcbcb;
 }
 
 .readmore[data-theme="specialiteter"],
 .wine_name[data-theme="specialiteter"],
 .fragt_info[data-theme="specialiteter"],
-.important_text[data-theme="specialiteter"] {
+.btn[data-theme="specialiteter"] {
   --wine-color: #a8a400;
 }
 
@@ -83,11 +83,13 @@ h3 {
 }
 
 p,
-a {
+a,
+h4 {
   font-family: var(--fontMain);
 }
 
-p {
+p,
+h4 {
   color: var(--textColor);
 }
 
@@ -173,12 +175,14 @@ footer p {
   position: fixed;
   top: 2vh;
   z-index: 1;
+  color: var(--textColor);
 }
 
-nav .mobile p {
-  font-weight: 400;
+.overlay-content p {
+  padding-left: 8px;
   font-size: 1.2rem;
-  padding-left: 2vw;
+  /* font-style: oblique; */
+  margin-bottom: 4px;
 }
 
 .desk_nav a {
@@ -222,7 +226,7 @@ header .desktop {
 }
 
 #contextnav nav a {
-  padding: 2vw;
+  padding: 5vw;
 }
 
 /*********************    FORSIDE    ***********************/
@@ -291,6 +295,18 @@ header .desktop {
     opacity: 1;
     transform: translateY(0px);
   }
+}
+
+#promises {
+  margin-left: 0;
+}
+
+.promises_wrapper {
+  text-align: center;
+}
+
+#promises img {
+  max-width: 85%;
 }
 
 /*********************    SCROLL DOWN ARROW    ***********************/
@@ -379,6 +395,7 @@ header .desktop {
 
 #headline {
   text-align: center;
+  padding-top: 2vw;
 }
 
 #desk_cards {
@@ -440,13 +457,100 @@ footer {
   font-size: 3rem;
 }
 
-.important_text {
-  background-image: linear-gradient(90deg, transparent 50%, var(--wine-color) 0);
-  background-origin: 0;
-  background-size: 200% 30%;
-  background-repeat: repeat-x;
-  background-position: -130% 90%;
-  transition: background-position 1.5s;
+.show_only {
+  font-weight: 600;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+  margin: 0 15vw 5vw 15vw;
+}
+
+/* button, der skifter tekst ved hover/klik på mobil
+Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
+
+.btn {
+  flex: 1 0 0px;
+  font: 20px/1 var(--fontMain);
+  text-align: center;
+  box-sizing: border-box;
+  background: none;
+  color: var(--wine-color);
+  border: 2px solid var(--wine-color);
+  transition: all 0.3s;
+  /* font-family: var(--fontMain); */
+  font-size: 0.9rem;
+  border-radius: 5px;
+  padding: 2.3vw;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn__effect--2 {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn__effect--2:before,
+.btn__effect--2 span {
+  transition: all 0.4s;
+  transition-timing-function: cubic-bezier(0.85, 0, 0.2, 1);
+}
+.btn__effect--2:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  content: attr(data-text);
+  transform: translate3d(0, 10px, 0);
+}
+.btn__effect--2 span {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+}
+.btn__effect--2:hover:before {
+  opacity: 0;
+  transform: translate3d(0, 40px, 0);
+}
+.btn__effect--2:hover span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.btn__effect--2:hover span:nth-child(1) {
+  transition-delay: 0.04s;
+}
+.btn__effect--2:hover span:nth-child(2) {
+  transition-delay: 0.08s;
+}
+.btn__effect--2:hover span:nth-child(3) {
+  transition-delay: 0.12s;
+}
+.btn__effect--2:hover span:nth-child(4) {
+  transition-delay: 0.16s;
+}
+.btn__effect--2:hover span:nth-child(5) {
+  transition-delay: 0.2s;
+}
+.btn__effect--2:hover span:nth-child(6) {
+  transition-delay: 0.24s;
+}
+.btn__effect--2:hover span:nth-child(7) {
+  transition-delay: 0.28s;
+}
+.btn__effect--2:hover span:nth-child(8) {
+  transition-delay: 0.32s;
+}
+.btn__effect--2:hover span:nth-child(9) {
+  transition-delay: 0.36s;
+}
+.btn__effect--2:hover span:nth-child(10) {
+  transition-delay: 0.4s;
+}
+.btn__effect--2:hover span:nth-child(11) {
+  transition-delay: 0.44s;
+}
+.btn__effect--2:hover span:nth-child(12) {
+  transition-delay: 0.48s;
 }
 
 .fragt_info {
@@ -482,13 +586,17 @@ footer {
 }
 
 .wine_price {
-  margin-top: -2vh;
-  font-size: 0.6rem;
-  min-height: 1vw;
+  /* margin-top: -2vh; */
+  font-size: 0.8rem;
+  /* min-height: 1vw; */
 }
 
 #wines p {
   font-size: 0.8rem;
+}
+
+#wines .show_only {
+  font-size: 1.2rem;
 }
 
 /* .single_product h2 {
@@ -526,6 +634,34 @@ footer {
 
 #løfter {
   margin-top: 5vw;
+}
+
+/*INTERSECTION OBSERVER*/
+.anim,
+.anim2 {
+  opacity: 0;
+}
+
+@keyframes anim1 {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes anim2 {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 /****************        OM SLUT          ************/
 /****************        OM JOSEP           ************/
@@ -602,7 +738,7 @@ footer {
 
 @media screen and (min-width: 768px) {
   .readmore {
-    padding: 0.7vw;
+    padding: 0.6vw;
   }
 
   /****************      FORSIDE       ************/
@@ -629,16 +765,17 @@ footer {
   }
 
   .nav_bg {
-    background-color: #f2f0ed77;
+    background-color: var(--bagColor);
   }
 
   .nav_bg #myDropdown {
-    background-color: #f2f0ed77;
+    background-color: var(--bagColor);
   }
 
   .desktop a {
     font-weight: 500;
     padding: 0 1vw 0 1vw;
+    font-size: 1rem;
   }
 
   /* Dropdown Button */
@@ -646,7 +783,7 @@ footer {
     background-color: transparent;
     color: var(--textColor);
     padding: 0 1vw 0 1vw;
-    font-size: initial;
+    font-size: 1rem;
     border: none;
     cursor: pointer;
     font-family: var(--fontMain);
@@ -733,7 +870,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     /* grid-template-rows: 100px; */
-    margin: 10vw 5vw 0 5vw;
+    margin: 5vw 5vw 0 5vw;
   }
 
   .index_wrapper img {
@@ -751,9 +888,9 @@ footer {
     z-index: 1;
   }
 
-  .index_text p {
+  /* .index_text p {
     font-size: 0.9rem;
-  }
+  } */
 
   /* .index_text p {
     background-color: #f2f0ed80;
@@ -792,13 +929,17 @@ footer {
   /*************** FORSIDE SLUT ****************/
   /*************** VINE ****************/
 
+  .btn {
+    padding: 0.7vw;
+  }
+
   #intro {
     display: grid;
   }
 
-  #intro p {
+  /* .fragt_info p {
     font-size: 0.9rem;
-  }
+  } */
 
   .fragt_info {
     margin: 2vw 2vw 1vw 20vw;
@@ -822,9 +963,14 @@ footer {
     flex-wrap: wrap;
     max-width: 18vw;
     text-align: left;
-    min-width: 15vw;
+    min-width: 17vw;
     padding: 3vw;
     margin-top: 0;
+  }
+
+  .show_only {
+    border-bottom: none;
+    margin: 0 0 2vw 0;
   }
 
   #moed_smidtvine nav {
@@ -852,7 +998,7 @@ footer {
   .wines {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 5vh;
+    grid-column-gap: 1vh;
     grid-row-gap: 5vh;
     padding: 3vh;
     align-items: center;
@@ -893,12 +1039,8 @@ footer {
   }
 
   #promises {
-    margin-left: 18vw;
     padding: 3vw;
-  }
-
-  #promises p {
-    font-size: 0.8rem;
+    margin-left: 18vw;
   }
 
   .promises_wrapper {
@@ -908,7 +1050,19 @@ footer {
   }
 
   #promises img {
-    max-width: 40%;
+    max-width: 55%;
+  }
+
+  #specialiteter .vine_headline {
+    background-image: linear-gradient(90deg, transparent 50%, var(--specialitetColor) 0);
+  }
+
+  #specialiteter #wines img {
+    max-width: 110px;
+  }
+
+  #specialiteter .fragt_info {
+    border: 3px solid var(--specialitetColor);
   }
 
   /*************** SPECIALITETER SLUT ****************/
@@ -925,7 +1079,7 @@ footer {
   }
 
   #moed_smidtvine {
-    margin: 3vw 3vw 3vw 0;
+    margin: 3vw 0 3vw 0;
   }
 
   #moed_smidtvine img {
@@ -953,7 +1107,7 @@ footer {
 
   .garage_text,
   .vinfestival_text {
-    grid-column: 1 / 7;
+    grid-column: 1 / 6;
     grid-row: 1;
     background-color: #f2f0ed80;
     z-index: 1;
@@ -962,7 +1116,7 @@ footer {
 
   .start_image,
   .vinsmagning_image {
-    grid-column: 1 / 7;
+    grid-column: 1 / 6;
     grid-row: 1;
   }
 
@@ -975,6 +1129,7 @@ footer {
   #vinsmagning h2 {
     text-align: right;
     margin-right: 5vw;
+    padding-top: 5vw;
   }
 
   #vine_headline {
@@ -990,12 +1145,13 @@ footer {
   #vinfestival h2,
   #garagesalg h2 {
     margin-left: 5vw;
+    padding-top: 5vw;
   }
 
   /*************** MØD SMIDT VINE SLUT ****************/
   /*************** OM SMIDT VINE START ****************/
-  #about_smidtvine p {
-    font-size: 0.8rem;
+  #historie p {
+    font-size: 0.9rem;
   }
 
   #historie,
@@ -1005,7 +1161,13 @@ footer {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     /* grid-template-rows: 100px; */
-    margin: 5vw 5vw 0 5vw;
+    margin: 2vw 0 0 5vw;
+  }
+
+  .lokal_wrapper,
+  .unik_wrapper,
+  .personlig_wrapper {
+    align-items: center;
   }
 
   .lokal_wrapper img,
@@ -1015,11 +1177,20 @@ footer {
   }
 
   #about_smidtvine {
-    margin: 5vw 5vw 5vw 0;
+    margin: 0 0 5vw 0;
   }
 
   #about_content {
     margin-left: 18vw;
+  }
+
+  #løfter {
+    margin-top: 0;
+  }
+
+  #løfter h2 {
+    margin-left: 5vw;
+    padding-top: 5vw;
   }
 
   /* #about_smidtvine img {
@@ -1034,11 +1205,15 @@ footer {
 
   .historie_text,
   .unik_text {
-    grid-column: 6 / end;
+    grid-column: 7 / end;
     grid-row: 1;
     background-color: #f2f0ed80;
     z-index: 1;
     padding: 2vw;
+  }
+
+  .historie_text {
+    padding: 0 0 0 2vw;
   }
 
   .lokal_text,
@@ -1050,15 +1225,19 @@ footer {
     padding: 2vw;
   }
 
-  .historie_image,
-  .unik_image {
+  .historie_image {
     grid-column: 1 / 7;
+    grid-row: 1;
+  }
+
+  .unik_image {
+    grid-column: 3 / 9;
     grid-row: 1;
   }
 
   .lokal_image,
   .personlig_image {
-    grid-column: 6 / end;
+    grid-column: 7 / end;
     grid-row: 1;
   }
 
@@ -1074,7 +1253,7 @@ footer {
   }
 
   #moed_vinbonden {
-    margin: 3vw 3vw 3vw 0;
+    margin: 3vw 0 3vw 0;
   }
 
   #moed_vinbonden img {
@@ -1086,7 +1265,12 @@ footer {
   }
 
   #vinomraadet {
-    margin-top: 5vw;
+    padding-top: 5vw;
+  }
+
+  #vinomraadet h2 {
+    /* padding-top: 5vw; */
+    margin-left: 5vw;
   }
 
   .nico_text,
@@ -1100,7 +1284,7 @@ footer {
 
   .mosel_text,
   .montsant_text {
-    grid-column: 1 / 7;
+    grid-column: 1 / 6;
     grid-row: 1;
     background-color: #f2f0ed80;
     z-index: 1;
@@ -1109,7 +1293,7 @@ footer {
 
   .nico_image,
   .josep_image {
-    grid-column: 1 / 7;
+    grid-column: 1 / 6;
     grid-row: 1;
   }
 
@@ -1135,5 +1319,94 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2vw;
+  }
+}
+
+/**************** LARGE SCREEN MEDIA QUERIES************/
+/**************** LARGE SCREEN MEDIA QUERIES************/
+/**************** LARGE SCREEN MEDIA QUERIES************/
+/**************** LARGE SCREEN MEDIA QUERIES************/
+/**************** LARGE SCREEN MEDIA QUERIES************/
+
+@media screen and (min-width: 1350px) {
+  p,
+  a {
+    font-size: 1.5rem;
+  }
+
+  h1,
+  .vine_headline {
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+  }
+
+  .dropbtn,
+  .desktop a {
+    font-size: 1.5rem;
+  }
+
+  #headline {
+    font-size: 5rem;
+  }
+
+  #splash h2 {
+    font-size: 3rem;
+  }
+
+  .scroll-down p {
+    font-size: 1.8rem;
+  }
+
+  #løfter p,
+  #historie p {
+    font-size: 1.5rem;
+  }
+
+  .wines {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #wines p {
+    font-size: 1.5rem;
+  }
+
+  .wine_name {
+    font-size: 2rem;
+  }
+
+  .wine_price {
+    font-size: 1.2rem;
+  }
+
+  #wines img {
+    max-width: 110px;
+  }
+
+  .single_wine h2 {
+    font-size: 2rem;
+  }
+
+  .btn__effect--2:before {
+    top: 0.3vw;
+  }
+
+  .show_only {
+    font-size: 1.5rem;
+  }
+
+  #specialiteter #wines img {
+    max-width: 160px;
+  }
+
+  footer a,
+  footer p {
+    font-size: 1.2rem;
   }
 }

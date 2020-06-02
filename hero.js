@@ -18,7 +18,7 @@ function start() {
   function visData() {
     console.log(info);
     document.querySelector(".hero").innerHTML = `
-          
+    <source media="(min-width: 1350px) and (orientation: landscape)" srcset="${info.desktop_large_image.guid}" />
           <source media="(min-width: 1025px) and (orientation: landscape)" srcset="${info.desktop_image.guid}" />
           <source media="(min-width: 813px) and (orientation: landscape)" srcset="${info.tablet_landscape_image.guid}" />
           <source media="(min-width: 628px) and (orientation: portrait)" srcset="${info.tablet_portrait_image.guid}" />
