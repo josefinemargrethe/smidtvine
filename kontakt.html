@@ -66,9 +66,7 @@
           <div class="mail"></div>
           <div class="facebook"></div>
         </article>
-        <article class="map">
-          <img src="img/map.png" alt="map" />
-        </article>
+        <article class="map"></article>
       </section>
     </main>
 
@@ -103,23 +101,23 @@
     <script>
       "use strict";
       let info = [];
-      // let svg = {};
+      let svg = {};
 
       document.addEventListener("DOMContentLoaded", start);
 
       function start() {
         hentJson();
-        // hentSVG();
+        hentSVG();
       }
 
-      // async function hentSVG() {
-      //   let url = "svg/map.svg";
-      //   let svgData = await fetch(url);
+      async function hentSVG() {
+        let url = "svg/map.svg";
+        let svgData = await fetch(url);
 
-      //   svg = await svgData.text();
+        svg = await svgData.text();
 
-      //   visSVG();
-      // }
+        visSVG();
+      }
 
       async function hentJson() {
         let url = "https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/kontakt/170";
@@ -130,19 +128,9 @@
         visData();
       }
 
-      // function visSVG() {
-      //   document.querySelector(".map").innerHTML = svg;
-
-      //   document.querySelector("#whitegrape").classList.add("white_explode");
-      //   document.querySelector("#redgrape").classList.add("red_explode");
-      //   document.querySelector("#rosegrape").classList.add("white_explode");
-
-      //   // document.querySelector("#whitegrape").addEventListener("animationend", redExplode);
-      // }
-
-      //   function redExplode() {
-      //     document.querySelector("#redgrape").style.display = "block";
-      //   }
+      function visSVG() {
+        document.querySelector(".map").innerHTML = svg;
+      }
 
       function visData() {
         //            her indsættes tekst:

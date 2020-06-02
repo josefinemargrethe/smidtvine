@@ -187,7 +187,7 @@
           info.forEach((mix) => {
             console.log(mix.id + " id = " + id);
 
-            if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej") {
+            if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej" && mix.pris_enkeltstyk != "") {
               document.querySelector("#mix_match").innerHTML += `
 
 
@@ -202,32 +202,19 @@
       </div>
 
       `;
+            } else if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej" && mix.pris_enkeltstyk == "") {
+              document.querySelector("#mix_match").innerHTML += `
+        <div class="single_wine">
+          <a href="vin.html?id=${mix.id}"><div class="wine_image"><img src="${mix.vin_billede.guid}" alt="${mix.vin_billede.post_title}"> </div>
+                    <div class="wine_info">
+                      <h2 class="wine_name">${mix.vin_navn}</h2>
+                      <p class="wine_description">${mix.kort_beskrivelse}</p>
+                      <p class="wine_price_six"><b>Pris: ${mix.pris_6flasker} kr. ved køb af denne kasse</b></p>
+                      </a>
+      </div>
+      `;
             }
           });
-
-          // let interesse = document.querySelector("#interesse");
-
-          // if (info.wine_type == "redwine") {
-          //   interesse.innerHTML += `<h2>Er du interesseret i rødvin? Se vores andre rødvine her</h2>`;
-          // } else if (info.wine_type == "whitewine") {
-          //   interesse.innerHTML += `<h2>Er du interesseret i hvidvin? Se vores andre hvidvine her</h2>`;
-          // } else if (info.wine_type == "rosewine") {
-          //   interesse.innerHTML += `<h2>Er du interesseret i rosé vin? Se vores andre rosé vine her</h2>`;
-          // } else {
-          //   interesse.innerHTML += `<h2>Er du interesseret i smagekasser? Se vores andre smagekasser her</h2>`;
-          // }
-
-          //   info.forEach((type) => {
-          //     if (type.wine_type == "redwine") {
-          //       interesse.innerHTML = `<h2>Er du interesseret i rødvin? Se vores andre rødvine her</h2>`;
-          //     } else if (type.wine_type == "whitewine") {
-          //       interesse.innerHTML = `<h2>Er du interesseret i hvidvin? Se vores andre hvidvine her</h2>`;
-          //     } else if (type.wine_type == "rosewine") {
-          //       interesse.innerHTML = `<h2>Er du interesseret i rosé vin? Se vores andre rosé vine her</h2>`;
-          //     } else {
-          //       interesse.innerHTML = `<h2>Er du interesseret i smagekasser? Se vores andre smagekasser her</h2>`;
-          //     }
-          //   });
         }
 
         //Her indsættes en HTML-artikel med produktdetaljer og billeder for det produkt, som vores id tilhører i array'et.
@@ -298,8 +285,12 @@
           let theme = vin.vin_type;
           document.querySelector(".fragt_info").setAttribute("data-theme", theme);
           document.querySelector(".wine_name").setAttribute("data-theme", theme);
-          document.querySelector(".btn").setAttribute("data-theme", theme);
 
+          if (vin.udsolgt == "nej") {
+            document.querySelector(".btn").setAttribute("data-theme", theme);
+          }
+
+          //Sætter navnet på den enkelte vin i title-attributen på siden
           document.querySelector("title").textContent += ` ${vin.vin_navn}`;
         }
 
