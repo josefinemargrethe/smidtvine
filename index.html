@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="Meta description her" />
-    <meta name="keywords" content="keywords here" />
+    <meta name="description" content="Smidt Vine er en lokal vinhandel i Svendborg på Sydfyn, der sælger gode, unikke vine fra Montsant og Mosel, der alle er udvalgt personligt." />
+    <meta
+      name="keywords"
+      content="vin, vinhandel, vinbutik, vin online, rødvin, hvidvin, rosé vin, smagekasser, mystery box, Svendborg, Sydfyn, Fyn, lokal, personlig, unik, ærlig, nær, sjælden, Riesling, Mosel, Tyskland, Montsant, Mont Sant, Spanien, specialiteter, oliven, vindruer, olie, ekstra jomfru olivenolie, økologisk"
+    />
     <title>Forside | Smidt Vine</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -28,7 +31,7 @@
             <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Smag vores vine</a>
+            <a href="smag.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
             <p>Vinbønderne</p>
             <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
@@ -44,7 +47,7 @@
         <a href="index.html"><b>Forside</b></a>
         <a href="allevine.html">Vine</a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html">Smag vores vine</a>
+        <a href="smag.html">Smag vores vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
@@ -68,7 +71,7 @@
         </a>
       </section>
 
-      <section id="headline"><h1>Velkommen til Smidt Vine!</h1></section>
+      <section id="headline"><h1>Velkommen til Smidt Vine</h1></section>
 
       <section id="index_content">
         <div class="index_content"></div>
@@ -89,58 +92,23 @@
         <article class="promises_wrapper">
           <article>
             <a href="om.html">
-              <img src="img/støt_lokalt.png" alt="støt lokalt" />
+              <img src="img/støt_lokalt.png" alt="støt lokalt" class="pop_up" data-delay="0s" />
               <h4>Du støtter lokalt</h4>
             </a>
           </article>
           <article>
             <a href="om.html">
-              <img src="img/unikke_varer.png" alt="unikke" />
+              <img src="img/unikke_varer.png" alt="unikke" class="pop_up" data-delay="0.7s" />
               <h4>Du får unikke produkter</h4>
             </a>
           </article>
           <article>
             <a href="om.html">
-              <img src="img/personligt.png" alt="personligt" />
-              <h4>Du køber personligt</h4>
+              <img src="img/personligt.png" alt="personligt" class="pop_up" data-delay="1.4s" />
+              <h4>Du køber det personlige</h4>
             </a>
           </article>
         </article>
-      </section>
-
-      <section id="mobile_cards">
-        <a href="allevine.html"
-          ><div><img src="img/rødvin.png" alt="rødvin" /></div
-        ></a>
-        <a href="allevine.html"
-          ><div><p>Se vores udvalg af vin her</p></div></a
-        >
-        <a href="allespecialiteter.html"
-          ><div><img src="img/specialiteter.png" alt="specialiteter" /></div
-        ></a>
-        <a href="allespecialiteter.html"
-          ><div><p>Se vores udvalg af specialiteter her</p></div></a
-        >
-      </section>
-      <section id="desk_cards">
-        <div>
-          <a href="roedvine.html"><img src="img/rødvin.png" alt="rødvin" /></a>
-        </div>
-        <div>
-          <a href="rosevine.html"><img src="img/rose_vin.png" alt="rose" /></a>
-        </div>
-        <div>
-          <a href="allespecialiteter.html"><img src="img/specialiteter.png" alt="specialiteter" /></a>
-        </div>
-        <div>
-          <a href="roedvine.html"><p>Se vores udvalg af rødvin</p></a>
-        </div>
-        <div>
-          <a href="rosevine.html"><p>Se vores udvalg af rosé vin</p></a>
-        </div>
-        <div>
-          <a href="allespecialiteter.html"><p>Se vores udvalg af specialiteter</p></a>
-        </div>
       </section>
     </main>
 
@@ -173,6 +141,8 @@
     </footer>
 
     <script>
+      "use strict";
+
       //media query
       const mq = window.matchMedia("(min-width: 800px)");
 
@@ -221,7 +191,7 @@
 
         yScrollPosition = window.scrollY;
 
-        setTranslate(0, yScrollPosition * 0.04, para);
+        setTranslate(0, yScrollPosition * 0.06, para);
 
         requestAnimationFrame(scrollLoop);
       }
@@ -241,7 +211,7 @@
         }
       }
     </script>
-    <!-- <script src="script.js"></script> -->
+    <script src="intersect.js"></script>
     <script src="header.js"></script>
     <script src="hero.js"></script>
   </body>

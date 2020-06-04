@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="Smidt Vine er en lokal vinhandel i Svendborg på Sydfyn, der sælger gode, unikke vine fra Montsant og Mosel, der alle er udvalgt personligt." />
+    <meta
+      name="keywords"
+      content="vin, vinhandel, vinbutik, vin online, rødvin, hvidvin, rosé vin, smagekasser, mystery box, Svendborg, Sydfyn, Fyn, lokal, personlig, unik, ærlig, nær, sjælden, Riesling, Mosel, Tyskland, Montsant, Mont Sant, Spanien, specialiteter, oliven, vindruer, olie, ekstra jomfru olivenolie, økologisk"
+    />
     <title>Mød Smidt Vine</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -21,7 +26,7 @@
             <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Smag vores vine</a>
+            <a href="smag.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
             <p>Vinbønderne</p>
             <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
@@ -37,7 +42,7 @@
         <a href="index.html">Forside</a>
         <a href="allevine.html">Vine</a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html"><b>Smag vores vine</b></a>
+        <a href="smag.html"><b>Smag vores vine</b></a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
@@ -52,7 +57,7 @@
 
     <main>
       <section id="vine_headline">
-        <h1><span class="vine_headline">Mød Smidt Vine</span></h1>
+        <h1><span class="vine_headline">Smag vores vine</span></h1>
       </section>
 
       <section id="moed_smidtvine">
@@ -133,7 +138,7 @@
       window.addEventListener("DOMContentLoaded", loadJSON);
 
       function loadJSON() {
-        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/md_smidt_vine")
+        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/smag_vores_vine")
           .then((response) => response.json())
           .then((jsonData) => {
             //når JSON er loadet tager vi vores data med videre til prepareData

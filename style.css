@@ -3,10 +3,13 @@
   --textColor: #2d3a4a;
   --bagColor: #f2f0ed;
   --prettyYellow: #ffc600;
-  --redWineColor: #7099d0;
-  --whiteWineColor: #b5c10e;
+  /* --redWineColor: #7099d0; */
+  --redWineColor: #678cbf;
+  /* --whiteWineColor: #b5c10e; */
+  --whiteWineColor: #b7bf45;
   --roseWineColor: #be6580;
-  --smagekasseColor: #9bcbcb;
+  /* --smagekasseColor: #9bcbcb; */
+  --smagekasseColor: #bd9648;
   --specialitetColor: #a8a400;
   --fontMain: "Poppins", sans-serif;
   --fontHead: "Playfair Display", serif;
@@ -16,14 +19,16 @@
 .wine_name[data-theme="rødvin"],
 .fragt_info[data-theme="rødvin"],
 .btn[data-theme="rødvin"] {
-  --wine-color: #7099d0;
+  /* --wine-color: #7099d0; */
+  --wine-color: #678cbf;
 }
 
 .readmore[data-theme="hvidvin"],
 .wine_name[data-theme="hvidvin"],
 .fragt_info[data-theme="hvidvin"],
 .btn[data-theme="hvidvin"] {
-  --wine-color: #b5c10e;
+  /* --wine-color: #b5c10e; */
+  --wine-color: #b7bf45;
 }
 .readmore[data-theme="rosé vin"],
 .wine_name[data-theme="rosé vin"],
@@ -36,7 +41,8 @@
 .wine_name[data-theme="smagekasser"],
 .fragt_info[data-theme="smagekasser"],
 .btn[data-theme="smagekasser"] {
-  --wine-color: #9bcbcb;
+  /* --wine-color: #9bcbcb; */
+  --wine-color: #bd9648;
 }
 
 .readmore[data-theme="specialiteter"],
@@ -63,6 +69,18 @@
 body {
   background-color: var(--bagColor);
   margin: 0;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.unvisible {
+  opacity: 0;
 }
 
 img {
@@ -139,7 +157,7 @@ footer p {
   top: 0;
   right: 0;
   background-color: #f2f0ed;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: 0.5s;
 }
 
@@ -148,7 +166,7 @@ footer p {
   top: 10%;
   width: 100%;
   left: 10vw;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .overlay a {
@@ -258,7 +276,7 @@ header .desktop {
   /* padding-top: 40vh; */
   /* color: white; */
   animation: fade-in 1.5s both;
-  animation-delay: 1s;
+  animation-delay: 1.5s;
   /* animation: swinging 3.5s ease-in-out forwards infinite; */
 }
 
@@ -278,11 +296,11 @@ header .desktop {
 
 #splash h2 {
   position: absolute;
-  top: 44vh;
+  top: 47.5vh;
   left: 5vh;
   font-size: 1.2rem;
   animation: fade-in 1.5s both;
-  animation-delay: 2.5s;
+  animation-delay: 3s;
 }
 
 @keyframes fade-in {
@@ -299,6 +317,7 @@ header .desktop {
 
 #promises {
   margin-left: 0;
+  padding: 3vw;
 }
 
 .promises_wrapper {
@@ -396,16 +415,6 @@ header .desktop {
 #headline {
   text-align: center;
   padding-top: 2vw;
-}
-
-#desk_cards {
-  display: none;
-}
-
-#mobile_cards {
-  display: block;
-  text-align: center;
-  padding: 3vw;
 }
 
 #index_content {
@@ -561,7 +570,7 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 }
 
 .wines {
-  padding: 3vh;
+  padding: 3vh 3vh 3vh 0;
   align-items: center;
 }
 
@@ -583,6 +592,10 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 
 #wines img {
   max-width: 60px;
+}
+
+#specialiteter #wines img {
+  max-width: 90px;
 }
 
 .wine_price {
@@ -638,6 +651,7 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 
 #løfter {
   margin-top: 5vw;
+  overflow-x: hidden;
 }
 
 /*INTERSECTION OBSERVER*/
@@ -664,6 +678,17 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
   }
   to {
     transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pop_up_anim {
+  from {
+    transform: translateY(10vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -835,27 +860,11 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
     font-size: 2.5rem;
   }
 
-  #mobile_cards {
-    display: none;
-  }
-
-  #desk_cards {
-    margin: 5vw 3vw 0 3vw;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 3vw;
-    text-align: center;
-    /* background-color: white; */
-    /* box-shadow: 0px 5px 10px 0.5px rgba(0, 0, 0, 0.2); */
-    grid-column-gap: 2vw;
-    grid-row-gap: 1vw;
-  }
-
   .index_wrapper {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    /* grid-template-rows: 100px; */
+    grid-template-columns: repeat(2, 1fr);
     margin: 5vw 5vw 0 5vw;
+    grid-column-gap: 2vw;
   }
 
   .index_wrapper img {
@@ -867,7 +876,6 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
   }
 
   .index_text {
-    grid-column: 1 / 7;
     grid-row: 1;
     background-color: #f2f0ed80;
     z-index: 1;
@@ -882,7 +890,6 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
   } */
 
   .index_image {
-    grid-column: 6 / end;
     grid-row: 1;
   }
 
@@ -987,7 +994,7 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
     grid-row-gap: 5vh;
     padding: 3vh;
     align-items: center;
-    margin-left: 15vw;
+    margin-left: 16vw;
   }
 
   #single_wrapper {
@@ -1013,14 +1020,14 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
     margin-top: 0;
   }
 
-  #mix_match {
+  #mix_products {
     display: grid;
     grid-template-columns: repeat(4, auto);
     margin-right: 3vw;
     margin-left: 3vw;
   }
 
-  #mix_match a {
+  #mix_products a {
     font-weight: 400;
   }
 
@@ -1212,7 +1219,7 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 
   .lokal_image,
   .personlig_image {
-    grid-column: 9 / end;
+    grid-column: 8 / 12;
     grid-row: 1;
   }
 
@@ -1279,7 +1286,7 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
   }
 
   #moed_vinbonden h2 {
-    margin-left: 3vw;
+    margin-left: 7vw;
   }
 
   /*************** OM VINBØNDERNE SLUT ****************/
@@ -1305,10 +1312,10 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 /**************** LARGE SCREEN MEDIA QUERIES************/
 /**************** LARGE SCREEN MEDIA QUERIES************/
 
-@media screen and (min-width: 1680) {
+@media screen and (min-width: 1680px) {
   p,
   a {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   h1,
@@ -1322,6 +1329,10 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 
   h3 {
     font-size: 2.5rem;
+  }
+
+  h4 {
+    font-size: 1.7rem;
   }
 
   .dropbtn,
@@ -1343,27 +1354,40 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
 
   #løfter p,
   #historie p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
-  .wines {
+  /* .wines {
     grid-template-columns: repeat(4, 1fr);
-  }
+  } */
 
-  #wines p {
-    font-size: 1.5rem;
+  #wines p,
+  #wines a {
+    font-size: 1.1rem;
   }
 
   .wine_name {
     font-size: 2rem;
   }
 
-  .wine_price {
-    font-size: 1.2rem;
+  .wine_price p {
+    font-size: 1rem;
   }
 
   #wines img {
-    max-width: 110px;
+    max-width: 75px;
+  }
+
+  #wines h3 {
+    font-size: 1.5rem;
+  }
+
+  #mix_products h2 {
+    font-size: 1.3rem;
+  }
+
+  #contextnav nav {
+    min-width: 14vw;
   }
 
   .single_wine h2 {
@@ -1379,11 +1403,15 @@ Inspiration hertil er fået fra https://codepen.io/melaniebmn/pen/VyOOVQ*/
   }
 
   #specialiteter #wines img {
-    max-width: 160px;
+    max-width: 120px;
   }
 
   footer a,
   footer p {
     font-size: 1.2rem;
+  }
+
+  #kontakt p {
+    font-size: 1.3rem;
   }
 }

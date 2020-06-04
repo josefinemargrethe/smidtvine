@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="Smidt Vine er en lokal vinhandel i Svendborg på Sydfyn, der sælger gode, unikke vine fra Montsant og Mosel, der alle er udvalgt personligt." />
+    <meta
+      name="keywords"
+      content="vin, vinhandel, vinbutik, vin online, rødvin, hvidvin, rosé vin, smagekasser, mystery box, Svendborg, Sydfyn, Fyn, lokal, personlig, unik, ærlig, nær, sjælden, Riesling, Mosel, Tyskland, Montsant, Mont Sant, Spanien, specialiteter, oliven, vindruer, olie, ekstra jomfru olivenolie, økologisk"
+    />
     <title>Vine fra Smidt Vine</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -21,7 +26,7 @@
             <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Smag vores vine</a>
+            <a href="smag.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
             <p>Vinbønderne</p>
             <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
@@ -37,7 +42,7 @@
         <a href="index.html">Forside</a>
         <a href="allevine.html"><b>Vine</b></a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html">Smag vores vine</a>
+        <a href="smag.html">Smag vores vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
@@ -56,14 +61,7 @@
       </section>
 
       <section id="intro">
-        <article class="fragt_info">
-          <p>
-            Ring <a href="tel:21950875">21 95 08 75</a> for at købe. Husk at vi altid har <span class="important_text">gratis fragt og dag-til-dag levering i 5700 Svendborg.</span> Ved køb for mere
-            end 500 kr. er der også gratis fragt på resten af Fyn. Du kan også
-            <span class="important_text">altid hente dine varer på vores adresse i Svendborg.</span>
-            <a href="kontakt.html">Læs mere om køb her.</a>
-          </p>
-        </article>
+        <article class="fragt_info"></article>
         <aside id="contextnav">
           <nav>
             <p class="show_only">Oversigt</p>
@@ -102,21 +100,21 @@
         <p>Læs mere om historien bag Smidt Vine og hvad vi lover jer, vores kunder, <a href="om.html#løfter">ved at klikke her</a></p>
         <article class="promises_wrapper">
           <article>
-            <a href="om.html#lokal">
-              <img src="img/støt_lokalt.png" alt="støt lokalt" />
-              <p>Du støtter lokalt</p>
+            <a href="om.html">
+              <img src="img/støt_lokalt.png" alt="støt lokalt" class="pop_up" data-delay="0s" />
+              <h4>Du støtter lokalt</h4>
             </a>
           </article>
           <article>
-            <a href="om.html#unik">
-              <img src="img/unikke_varer.png" alt="unikke" />
-              <p>Du får unikke produkter</p>
+            <a href="om.html">
+              <img src="img/unikke_varer.png" alt="unikke" class="pop_up" data-delay="0.7s" />
+              <h4>Du får unikke produkter</h4>
             </a>
           </article>
           <article>
-            <a href="om.html#personlig">
-              <img src="img/personligt.png" alt="personligt" />
-              <p>Du køber personligt</p>
+            <a href="om.html">
+              <img src="img/personligt.png" alt="personligt" class="pop_up" data-delay="1.4s" />
+              <h4>Du køber det personlige</h4>
             </a>
           </article>
         </article>
@@ -152,8 +150,61 @@
       </p>
     </footer>
 
-    <script src="vine.js"></script>
+    <script>
+      "use strict";
+
+      window.addEventListener("DOMContentLoaded", loadJSON);
+
+      function loadJSON() {
+        fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100")
+          .then((response) => response.json())
+          .then((vine) => {
+            //når JSON er loadet tager vi vores data med videre til prepareData
+            showData(vine);
+          });
+      }
+
+      function showData(vine) {
+        // we are clearing the list
+        document.querySelector(".wines").innerHTML = "";
+
+        // we are building a new list
+        vine.forEach(displayData);
+      }
+
+      function displayData(vine) {
+        // create clone
+        const clone = document.querySelector("template").content.cloneNode(true);
+
+        // set clone data
+        clone.querySelector(".wine_image").innerHTML = `<img src="${vine.vin_billede.guid}" alt="${vine.vin_billede.post_title}">`;
+        clone.querySelector(".wine_name").innerHTML = vine.vin_navn;
+        clone.querySelector(".wine_description").innerHTML = vine.kort_beskrivelse;
+
+        if (vine.udsolgt == "ja") {
+          clone.querySelector(".wine_price_six").innerHTML = `${vine.vin_navn} er desværre mildertidigt udsolgt!`;
+          clone.querySelector(".wine_price_six").style.color = "rgb(192, 98, 98)";
+        } else if (vine.udsolgt == "nej" && vine.pris_enkeltstyk != "") {
+          clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af 6 flasker</p></b>`;
+          clone.querySelector(".wine_price").innerHTML = `<p>Ellers ${vine.pris_enkeltstyk} kr. pr. flaske</p>`;
+        } else {
+          clone.querySelector(".wine_price_six").innerHTML = `<b><p>Pris: ${vine.pris_6flasker} kr. ved køb af denne kasse</p></b>`;
+        }
+
+        let theme = vine.vin_type;
+        clone.querySelector(".readmore").setAttribute("data-theme", theme);
+
+        document.querySelector(".wines").appendChild(clone);
+
+        document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
+          location.href = "vin.html?id=" + vine.id;
+          //her vil browseren hente siden vin.html, og den vil desuden give siden en variabel der er lig med item.id. for at åbne den enkelte vin
+        });
+      }
+    </script>
+    <!-- <script src="vine.js"></script> -->
     <script src="header.js"></script>
-    <!-- <script src="fragt.js"></script> -->
+    <script src="intersect.js"></script>
+    <script src="fragt.js"></script>
   </body>
 </html>

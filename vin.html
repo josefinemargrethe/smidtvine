@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="Smidt Vine er en lokal vinhandel i Svendborg på Sydfyn, der sælger gode, unikke vine fra Montsant og Mosel, der alle er udvalgt personligt." />
+    <meta
+      name="keywords"
+      content="vin, vinhandel, vinbutik, vin online, rødvin, hvidvin, rosé vin, smagekasser, mystery box, Svendborg, Sydfyn, Fyn, lokal, personlig, unik, ærlig, nær, sjælden, Riesling, Mosel, Tyskland, Montsant, Mont Sant, Spanien, specialiteter, oliven, vindruer, olie, ekstra jomfru olivenolie, økologisk"
+    />
     <title>Smidt Vine:</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -51,7 +56,7 @@
             <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Smag vores vine</a>
+            <a href="smag.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
             <p>Vinbønderne</p>
             <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
@@ -67,7 +72,7 @@
         <a href="index.html">Forside</a>
         <a href="allevine.html"><b>Vine</b></a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html">Smag vores vine</a>
+        <a href="smag.html">Smag vores vine</a>
         <a href="om.html">Om Smidt Vine</a>
         <div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
@@ -99,17 +104,11 @@
           </aside>
           <div id="single_wrapper">
             <div id="singleview"></div>
-            <div class="fragt_info">
-              <p>
-                Ring <a href="tel:21950875">21 95 08 75</a> for at købe. Husk at vi altid har gratis fragt og dag-til-dag levering i 5700 Svendborg. Ved køb for mere end 500 kr. er der også gratis
-                fragt på resten af Fyn. Du kan også altid hente dine varer på vores adresse i Svendborg.
-                <a href="kontakt.html">Læs mere om køb her.</a>
-              </p>
-            </div>
+            <div class="fragt_info"></div>
             <div id="interesse">
               <!-- <h3>Relaterede produkter</h3> -->
             </div>
-            <div id="mix_match"></div>
+            <div id="mix_products"></div>
           </div>
         </article>
       </section>
@@ -160,7 +159,7 @@
           info = await jsonData.json();
           //console.log(info);
 
-          //Efter json-filen er hentet fra Wordpress, laves et loop, der gennemgår hvert objekt i array'et og leder efter det id, der passer til det, der blev sendt med fra afsendersiden, samt hvilken farve, det har. Når det er fundet, defineres objektet som item, og farven som itemColor. Da farven skal udfyldes på WP som en form/drop-down, er det reelt et array, som har første position 0. Der tilføjes også en tæller, i, der tæller hvor mange objekter der er:
+          //Efter json-filen er hentet fra Wordpress, laves et loop, der gennemgår hvert objekt i array'et og leder efter det id, der passer til det, der blev sendt med fra afsendersiden, samt hvilken type produkt det er. Når det er fundet, defineres objektet som item, og typen som itemType. Da typen skal udfyldes på WP som en form/drop-down, er det reelt et array, som har første position 0. Der tilføjes også en tæller, i, der tæller hvor mange objekter der er:
 
           info.forEach((obj, i) => {
             if (obj.id == id) {
@@ -168,7 +167,7 @@
               itemType = obj.vin_type[0];
             }
 
-            //her laves en betingelse som siger, at FØRST når ALLE objekterne i array'et er læst, må der gåes videre til de efterfølgende funktioner. Her bruges tælleren i til at sammenligne med array'ets længde. Da 0. position tælles med er det i +1.
+            //Da jeg har oplevet problemer med, at alle produkter ikke indlæses, er her lavet en betingelse som siger, at FØRST når ALLE objekterne i array'et er læst, må der gåes videre til de efterfølgende funktioner. Her bruges tælleren i til at sammenligne med array'ets længde. Da 0. position tælles med er det i +1.
 
             //console.log(info.length, i)
             if (info.length == i + 1) {
@@ -179,16 +178,16 @@
         }
 
         function getType(info) {
-          console.log("gettype");
-          console.log(info);
+          // console.log("gettype");
+          // console.log(info);
 
-          // her laves et loop, hvor man gennemgår array'et produkt for produkt, dvs. alle subposts i shop pod'en og tjekker, hvilke der har den farve, som passer til vores id længere oppe.
+          // her laves et loop, hvor man gennemgår array'et produkt for produkt, dvs. alle produkterne i vine på WordPress og tjekker, hvilke der er af samme type (rød, hvid, rosé eller smagekasse), som passer til vores id længere oppe og viser dem af samme type, men ikke samme ID som vi er inde på og ikke udsolgte produkter.
 
           info.forEach((mix) => {
             console.log(mix.id + " id = " + id);
 
             if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej" && mix.pris_enkeltstyk != "") {
-              document.querySelector("#mix_match").innerHTML += `
+              document.querySelector("#mix_products").innerHTML += `
 
 
         <div class="single_wine">
@@ -203,7 +202,7 @@
 
       `;
             } else if (mix.vin_type == itemType && mix.id != id && mix.udsolgt == "nej" && mix.pris_enkeltstyk == "") {
-              document.querySelector("#mix_match").innerHTML += `
+              document.querySelector("#mix_products").innerHTML += `
         <div class="single_wine">
           <a href="vin.html?id=${mix.id}"><div class="wine_image"><img src="${mix.vin_billede.guid}" alt="${mix.vin_billede.post_title}"> </div>
                     <div class="wine_info">
@@ -298,6 +297,6 @@
       }
     </script>
     <script src="header.js"></script>
-    <!-- <script src="fragt.js"></script> -->
+    <script src="fragt.js"></script>
   </body>
 </html>

@@ -24,8 +24,10 @@ window.onclick = function (event) {
 //Burgermenu åben og luk
 function openNav() {
   document.querySelector("#myNav").style.width = "100%";
+  document.querySelector("body").classList.add("no-scroll");
 }
 
 function closeNav() {
   document.querySelector("#myNav").style.width = "0%";
+  document.querySelector("body").classList.remove("no-scroll");
 }

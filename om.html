@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="Smidt Vine er en lokal vinhandel i Svendborg på Sydfyn, der sælger gode, unikke vine fra Montsant og Mosel, der alle er udvalgt personligt." />
+    <meta
+      name="keywords"
+      content="vin, vinhandel, vinbutik, vin online, rødvin, hvidvin, rosé vin, smagekasser, mystery box, Svendborg, Sydfyn, Fyn, lokal, personlig, unik, ærlig, nær, sjælden, Riesling, Mosel, Tyskland, Montsant, Mont Sant, Spanien, specialiteter, oliven, vindruer, olie, ekstra jomfru olivenolie, økologisk"
+    />
     <title>Om Smidt Vine</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
@@ -21,7 +26,7 @@
             <a href="index.html">Forside</a>
             <a href="allevine.html">Vine</a>
             <a href="allespecialiteter.html">Specialiteter</a>
-            <a href="moed_smidtvine.html">Smag vores vine</a>
+            <a href="smag.html">Smag vores vine</a>
             <a href="om.html">Om Smidt Vine</a>
             <p>Vinbønderne</p>
             <a href="niko_mosel.html" class="mobilnav_vinbonde">- Niko i Mosel</a>
@@ -37,7 +42,7 @@
         <a href="index.html">Forside</a>
         <a href="allevine.html">Vine</a>
         <a href="allespecialiteter.html">Specialiteter</a>
-        <a href="moed_smidtvine.html">Smag vores vine</a>
+        <a href="smag.html">Smag vores vine</a>
         <a href="om.html"><b>Om Smidt Vine</b></a>
         <div class="dropdown">
           <button onclick="myFunction()" class="dropbtn">Vinbønderne</button>
@@ -169,7 +174,7 @@
 
         // set clone data
         clone.querySelector(".historie_text").innerHTML = jsonData.historie_tekst;
-        clone.querySelector(".historie_image").innerHTML = `<img src="${jsonData.historie_billede.guid}" alt="${jsonData.historie_billede.slug}">`;
+        clone.querySelector(".historie_image").innerHTML = `<img src="${jsonData.historie_billede.guid}" alt="${jsonData.historie_billede.post_title}">`;
 
         clone.querySelector(".lokal_text").innerHTML = jsonData.lokal_tekst;
         clone.querySelector(".lokal_image").innerHTML = `<img src="${jsonData.lokal_billede.guid}" alt="${jsonData.lokal_billede.post_title}" class="anim2" data-delay=".1s" >`;
@@ -179,10 +184,17 @@
 
         clone.querySelector(".personlig_text").innerHTML = jsonData.personlig_tekst;
         clone.querySelector(".personlig_image").innerHTML = `<img src="${jsonData.personlig_billede.guid}" alt="${jsonData.personlig_billede.post_title}" class="anim2" data-delay=".1s">`;
+
         document.querySelector("#about_content").appendChild(clone);
 
         // intersection observer
         const images = document.querySelectorAll(".anim");
+
+        const config = {
+          root: null,
+          rootMargin: "0px",
+          threshold: [0, 0.25, 0.75],
+        };
 
         let observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
@@ -192,7 +204,7 @@
               entry.target.style.animation = "none";
             }
           });
-        });
+        }, config);
 
         images.forEach((image) => {
           observer.observe(image);
