@@ -159,7 +159,7 @@
         fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/vine?per_page=100")
           .then((response) => response.json())
           .then((vine) => {
-            //når JSON er loadet tager vi vores data med videre til prepareData
+            //når JSON er loadet tager vi vores data med videre
             showData(vine);
           });
       }
@@ -198,11 +198,10 @@
 
         document.querySelector(".wines").lastElementChild.addEventListener("click", () => {
           location.href = "vin.html?id=" + vine.id;
-          //her vil browseren hente siden vin.html, og den vil desuden give siden en variabel der er lig med item.id. for at åbne den enkelte vin
+          //her vil browseren hente siden vin.html, og den vil desuden give siden en variabel der er lig med vine.id. for at åbne den enkelte vin
         });
       }
     </script>
-    <!-- <script src="vine.js"></script> -->
     <script src="header.js"></script>
     <script src="intersect.js"></script>
     <script src="fragt.js"></script>

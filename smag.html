@@ -141,7 +141,7 @@
         fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/smag_vores_vine")
           .then((response) => response.json())
           .then((jsonData) => {
-            //når JSON er loadet tager vi vores data med videre til prepareData
+            //når JSON er loadet tager vi vores data med videre
             showData(jsonData);
           });
       }
@@ -200,7 +200,7 @@
         el.style.transform = `translate3d(0, ${yPos}px, 0)`;
       }
 
-      //desktopPil(); // Call listener function at run time
+      // Call listener function at run time
       mq.addListener(displayData); // Attach listener function on state changes
     </script>
     <script src="header.js"></script>

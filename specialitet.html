@@ -99,10 +99,6 @@
     </header>
 
     <main>
-      <!-- <section id="vine_headline">
-        <h1><span class="vine_headline">Olivenolie</span></h1>
-      </section> -->
-
       <section id="wines">
         <article class="content">
           <aside id="contextnav">
@@ -169,7 +165,7 @@
           info = await jsonData.json();
           //console.log(info);
 
-          //Efter json-filen er hentet fra Wordpress, laves et loop, der gennemgår hvert objekt i array'et og leder efter det id, der passer til det, der blev sendt med fra afsendersiden, samt hvilken farve, det har. Når det er fundet, defineres objektet som item, og farven som itemColor. Da farven skal udfyldes på WP som en form/drop-down, er det reelt et array, som har første position 0. Der tilføjes også en tæller, i, der tæller hvor mange objekter der er:
+          //Efter json-filen er hentet fra Wordpress, laves et loop, der gennemgår hvert objekt i array'et og leder efter det id, der passer til det, der blev sendt med fra afsendersiden, samt hvilken type specialitet det er. Når det er fundet, defineres objektet som item, og typen som itemType. Da typen skal udfyldes på WP som en form/drop-down, er det reelt et array, som har første position 0. Der tilføjes også en tæller, i, der tæller hvor mange objekter der er:
 
           info.forEach((obj, i) => {
             if (obj.id == id) {
@@ -191,7 +187,7 @@
           console.log("gettype");
           console.log(info);
 
-          // her laves et loop, hvor man gennemgår array'et produkt for produkt, dvs. alle subposts i shop pod'en og tjekker, hvilke der har den farve, som passer til vores id længere oppe.
+          // her laves et loop, hvor man gennemgår array'et produkt for produkt, dvs. alle subposts i specialitet pod'en og tjekker, hvilke der er den type, som matcher vores id længere oppe.
 
           info.forEach((mix) => {
             console.log(mix.id + " id = " + id);

@@ -157,7 +157,7 @@
         fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/specialiteter?per_page=100")
           .then((response) => response.json())
           .then((specialiteter) => {
-            //når JSON er loadet tager vi vores data med videre til prepareData
+            //når JSON er loadet tager vi vores data med videre
             showData(specialiteter);
           });
       }
@@ -201,7 +201,6 @@
         });
       }
     </script>
-    <!-- <script src="specialiteter.js"></script> -->
     <script src="header.js"></script>
     <script src="intersect.js"></script>
     <script src="fragt.js"></script>

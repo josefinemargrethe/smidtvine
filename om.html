@@ -155,7 +155,7 @@
         fetch("https://josefinemargrethe.dk/kea/4-semester/smidtvine/wordpress/wp-json/wp/v2/om_smidt_vine")
           .then((response) => response.json())
           .then((jsonData) => {
-            //når JSON er loadet tager vi vores data med videre til prepareData
+            //når JSON er loadet tager vi vores data med videre
             showData(jsonData);
           });
       }
